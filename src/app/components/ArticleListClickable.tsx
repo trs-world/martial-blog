@@ -12,6 +12,9 @@ interface PostMeta {
 }
 
 export default function ArticleListClickable({ posts }: { posts: PostMeta[] }) {
+  if (posts.length === 0) {
+    return <div style={{ color: '#111', fontWeight: 500, fontSize: '1.1em', textAlign: 'center', margin: '32px 0' }}>記事がありません</div>;
+  }
   return (
     <ul style={{ listStyle: 'none', padding: 0 }}>
       {posts.map((post) => (

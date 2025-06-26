@@ -42,10 +42,37 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className="navbar">
-          <Link href="/" className="navbar-logo" style={{display:'flex',alignItems:'center',marginRight:18}}>
-            <Image src="/logo.png" alt="ロゴ" height={48} width={60} style={{height:48, width:'auto', display:'block'}} priority />
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 28,
+          marginBottom: 10,
+          maxWidth: '100%',
+          overflow: 'visible',
+        }}>
+          <Link href="/" style={{
+            fontSize: '2.8rem',
+            fontWeight: 900,
+            letterSpacing: '0.07em',
+            background: 'linear-gradient(90deg, #ff3c3c 0%, #ffb347 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            color: '#ff3c3c',
+            textShadow: '2px 2px 6px rgba(0,0,0,0.12)',
+            textDecoration: 'none',
+            cursor: 'pointer',
+            transition: 'opacity 0.2s',
+            lineHeight: 1.2,
+            paddingBottom: 8,
+            overflow: 'visible',
+          }} aria-label="ホームへ">
+            Fight Fantasy
           </Link>
+          
+        </div>
+        <nav className="navbar">
+          
           <a href="/">ホーム</a>
           <a href="/posts?category=RIZIN" className="nav-btn nav-rizin">RIZIN</a>
           <a href="/posts?category=MMA" className="nav-btn nav-mma">MMA</a>

@@ -44,8 +44,12 @@ import ArticleListClickable from "../components/ArticleListClickable";
 import Sidebar from "../components/Sidebar";
 import styles from "../components/ResponsiveArticleList.module.css";
 
-export default function PostsPage() {
-  const posts = getPosts();
+export default function PostsPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+  const category = typeof searchParams.category === 'string' ? searchParams.category : Array.isArray(searchParams.category) ? searchParams.category[0] : undefined;
+  let posts = getPosts();
+  if (category) {
+    posts = posts.filter(post => post.category === category);
+  }
   return (
     <div className={styles.container} style={{maxWidth: '1000px', margin: '32px auto 0 auto', padding: '0 12px'}}>
       <main className={styles.main}>
