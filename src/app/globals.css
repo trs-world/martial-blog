@@ -149,6 +149,16 @@ nav {
   color: #fff;
 }
 
+/* ロゴだけホバーで色変化しない */
+.navbar-logo:hover, .navbar-logo:active, .navbar-logo:focus,
+.navbar-logo:hover *, .navbar-logo:active *, .navbar-logo:focus * {
+  background: none !important;
+  color: inherit !important;
+  filter: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
 footer {
   background: #2b1a10;
   color: #fff3e0;
