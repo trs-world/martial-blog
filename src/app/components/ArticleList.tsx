@@ -36,8 +36,8 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 style={{ textAlign: 'center', marginTop: 0, marginBottom: 24 }}>記事一覧</h1>
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        <h1 style={{ textAlign: 'center', marginTop: 20, marginBottom: 24 }}>記事一覧</h1>
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginTop: 20 }}>
           {filtered.map((post) => (
             <li
               key={post.slug}
@@ -66,7 +66,9 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
                     <span style={{ marginRight: 8 }}>{post.date}</span>
                     <span style={{ background: '#fbe9e7', color: '#b71c1c', borderRadius: 4, padding: '2px 7px', fontSize: '0.9em', marginLeft: 2 }}>{post.category}</span>
                   </div>
-                  <div style={{ fontWeight: 'bold', fontSize: '1.1em', marginBottom: 4 }}>{post.title}</div>
+                  <Link href={`/posts/${post.slug}`} style={{ fontWeight: 'bold', fontSize: '1.1em', marginBottom: 4, color: '#b71c1c', textDecoration: 'underline', display: 'inline-block' }} aria-label={`${post.title} の記事ページへ移動`}>
+                    {post.title}
+                  </Link>
                   <div style={{ color: '#888', fontSize: '0.97em', marginBottom: 12, minHeight: '1.5em' }}>
                     {post.excerpt}
                   </div>

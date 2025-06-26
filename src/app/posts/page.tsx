@@ -41,12 +41,27 @@ import Image from 'next/image';
 
 import ArticleListClickable from "../components/ArticleListClickable";
 
+import Sidebar from "../components/Sidebar";
+import styles from "../components/ResponsiveArticleList.module.css";
+
 export default function PostsPage() {
   const posts = getPosts();
   return (
-    <main style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
-      <h1 style={{ textAlign: 'center' }}>記事一覧</h1>
-      <ArticleListClickable posts={posts} />
-    </main>
+    <div className={styles.container} style={{maxWidth: '1000px', margin: '32px auto 0 auto', padding: '0 12px'}}>
+      <main className={styles.main}>
+        <h1 style={{ textAlign: 'center', marginTop: 20, marginBottom: 24 }}>記事一覧</h1>
+        <ArticleListClickable posts={posts} />
+        {/* モバイル時のみ下部にSidebarを表示 */}
+        <div className={styles.mobileOnly}>
+          <Sidebar />
+        </div>
+      </main>
+      {/* PC時のみ右側にSidebarを表示 */}
+      <aside className={styles.aside}>
+        <div className={styles.desktopOnly}>
+          <Sidebar />
+        </div>
+      </aside>
+    </div>
   );
 }

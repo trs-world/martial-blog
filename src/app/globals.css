@@ -79,6 +79,15 @@ h2 {
   font-size: 1.4em;
   color: var(--main-brown);
 }
+
+/* --- モバイル用ナビ切り替え --- */
+.nav-pc { display: inline-block; }
+.nav-mobile-menu { display: none; }
+
+  .nav-pc { display: none !important; }
+  .nav-mobile-menu { display: inline-block !important; vertical-align: middle; }
+
+
 h3 {
   font-size: 1.1em;
   color: var(--main-black);
