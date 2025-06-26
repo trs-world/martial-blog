@@ -42,13 +42,14 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div style={{
+        <div className="topbar" style={{
+          width: '100vw',
+          maxWidth: 'none',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           marginTop: 28,
           marginBottom: 10,
-          maxWidth: '100%',
           overflow: 'visible',
         }}>
           <Link href="/" style={{
@@ -71,9 +72,7 @@ export default function RootLayout({
           </Link>
           
         </div>
-        <nav className="navbar">
-          
-          <a href="/">ホーム</a>
+        <nav className="navbar" style={{display:'flex', alignItems:'center'}}><Link href="/" className="navbar-logo" style={{display:'flex', alignItems:'center'}}><Image src="/logo.png" alt="ロゴ" height={40} width={50} style={{height:'90%', width:'auto', display:'block'}} priority /></Link><a href="/">ホーム</a>
           <a href="/posts?category=RIZIN" className="nav-btn nav-rizin">RIZIN</a>
           <a href="/posts?category=MMA" className="nav-btn nav-mma">MMA</a>
           <a href="/posts?category=ボクシング" className="nav-btn nav-boxing">ボクシング</a>

@@ -168,6 +168,13 @@ nav {
   text-decoration: none !important;
 }
 
+/* ナビバーのロゴ画像を全ページで高さ90%に統一 */
+.navbar-logo img {
+  height: 90% !important;
+  width: auto;
+  display: block;
+}
+
 footer {
   background: #2b1a10;
   color: #fff3e0;
