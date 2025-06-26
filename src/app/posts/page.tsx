@@ -53,7 +53,7 @@ export default function PostsPage({ searchParams }: { searchParams: { [key: stri
   return (
     <div className={styles.container} style={{maxWidth: '1000px', margin: '32px auto 0 auto', padding: '0 12px'}}>
       <main className={styles.main}>
-        
+        <div style={{ marginTop: 20, marginBottom: 24 }}></div>
         <ArticleListClickable posts={posts} />
         {/* モバイル時のみ下部にSidebarを表示 */}
         <div className={styles.mobileOnly}>

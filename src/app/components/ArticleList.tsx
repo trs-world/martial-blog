@@ -36,7 +36,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 style={{ textAlign: 'center', marginTop: 20, marginBottom: 24 }}>記事一覧</h1>
+        
         {filtered.length === 0 ? (
           <div style={{ color: '#111', fontWeight: 500, fontSize: '1.1em', textAlign: 'center', margin: '32px 0' }}>記事がありません</div>
         ) : (
