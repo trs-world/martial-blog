@@ -27,11 +27,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
   });
 
   // 人気記事データ（本来はpropsやAPIから取得）
-  const popularArticles = [
-    { title: '最強の打撃テクニック', slug: 'best-striking', views: 1280, thumbnail: '/sample-thumb.jpg' },
-    { title: '寝技で勝つ！', slug: 'grappling-win', views: 1032, thumbnail: '/sample-thumb.jpg' },
-    { title: '初心者向け護身術', slug: 'self-defense-beginner', views: 980, thumbnail: '/sample-thumb.jpg' }
-  ];
+  const popularArticles: import('./PopularArticles').PopularArticle[] = [];
 
   return (
     <div className={styles.container}>
