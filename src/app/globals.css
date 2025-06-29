@@ -159,13 +159,29 @@ nav {
 }
 
 /* ロゴだけホバーで色変化しない */
+.navbar-logo {
+  color: #ff3c3c !important;
+  background: linear-gradient(90deg, #ff3c3c 0%, #ffb347 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
 .navbar-logo:hover, .navbar-logo:active, .navbar-logo:focus,
+a.navbar-logo:hover, a.navbar-logo:active, a.navbar-logo:focus {
+  background: linear-gradient(90deg, #ff3c3c 0%, #ffb347 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #ff3c3c !important;
+}
 .navbar-logo:hover *, .navbar-logo:active *, .navbar-logo:focus * {
   background: none !important;
   color: inherit !important;
   filter: none !important;
   box-shadow: none !important;
   text-decoration: none !important;
+  outline: none !important;
+  border: none !important;
+  opacity: 1 !important;
+  transition: none !important;
 }
 
 /* ナビバーのロゴ画像を全ページで高さ90%に統一 */

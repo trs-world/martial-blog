@@ -9,13 +9,14 @@
   width: 40px;
   height: 40px;
   z-index: 1001;
+  margin: 0 12px;
 }
 .bar {
   display: block;
   width: 28px;
   height: 4px;
   margin: 3px 0;
-  background: #222;
+  background: #fff3e0;
   border-radius: 2px;
   transition: 0.3s;
 }
@@ -35,16 +36,19 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 80vw;
+  width: 40vw;
   max-width: 320px;
   height: 100vh;
-  background: #fff;
+  background: #2b1a10;
   box-shadow: -2px 0 8px rgba(0,0,0,0.1);
   z-index: 1002;
   display: flex;
   flex-direction: column;
   animation: slideIn 0.25s;
+  padding-left: 0;
+  padding-right: 0;
 }
+
 @keyframes slideIn {
   from { right: -320px; }
   to { right: 0; }
@@ -54,9 +58,62 @@
   border: none;
   font-size: 2rem;
   align-self: flex-end;
-  margin: 16px 16px 0 0;
+  margin: 0 16px 0 0;
   cursor: pointer;
 }
+
+.backIcon {
+  border-radius: 50%;
+  background: transparent;
+}
+
+.desktopNav {
+  display: flex;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none !important;
+  }
+  .mobileOnly {
+    display: flex !important;
+  }
+}
+
+.menuList {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.menuList .nav-btn {
+  flex: 0 0 15%;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ead9c3;
+}
+
+.menuList .nav-btn:last-child {
+  border-bottom: none;
+}
+.menuOpen .nav-btn:last-child {
+  border-bottom: none;
+}
+
 .menuHeader {
   display: flex;
   align-items: center;

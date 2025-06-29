@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from 'next/link';
 import Image from 'next/image';
+import ResponsiveNav from './components/ResponsiveNav';
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -39,6 +40,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
@@ -52,7 +54,7 @@ export default function RootLayout({
           marginBottom: 10,
           overflow: 'visible',
         }}>
-          <Link href="/" style={{
+          <Link href="/" className="navbar-logo" style={{
             fontSize: '2.8rem',
             fontWeight: 900,
             letterSpacing: '0.07em',
@@ -72,12 +74,10 @@ export default function RootLayout({
           </Link>
           
         </div>
-        <nav className="navbar" style={{display:'flex', alignItems:'center'}}><Link href="/" className="navbar-logo" style={{display:'flex', alignItems:'center'}}><Image src="/logo.png" alt="ロゴ" height={40} width={50} style={{height:'90%', width:'auto', display:'block'}} priority /></Link><a href="/">ホーム</a>
-          <a href="/posts?category=RIZIN" className="nav-btn nav-rizin">RIZIN</a>
-          <a href="/posts?category=MMA" className="nav-btn nav-mma">MMA</a>
-          <a href="/posts?category=ボクシング" className="nav-btn nav-boxing">ボクシング</a>
-          <a href="/posts?category=キックボクシング" className="nav-btn nav-kick">キックボクシング</a>
-        </nav>
+
+        {/* ナビゲーションバー */}
+        <ResponsiveNav />
+
         {children}
         <footer>
           <div className="footer-nav">
