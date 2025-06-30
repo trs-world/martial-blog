@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
       text: `お名前: ${name}\nメール: ${email}\n題名: ${subject}\n\n${message}`,
     });
     return NextResponse.json({ ok: true });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'メール送信に失敗しました。' }, { status: 500 });
   }
 }

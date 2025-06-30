@@ -13,9 +13,6 @@ interface PostMeta {
   thumbnail?: string;
 }
 
-interface PostProps {
-  params: { slug: string };
-}
 
 async function getPost(slug: string): Promise<{ meta: PostMeta; contentHtml: string } | null> {
   const postsDir = path.join(process.cwd(), 'posts');
@@ -49,10 +46,12 @@ async function getPost(slug: string): Promise<{ meta: PostMeta; contentHtml: str
 
 import PostBodyWithBoxedHeadings from '../PostBodyWithBoxedHeadings';
 
-export default async function PostPage({ params }: PostProps) {
+export default async function PostPage(props: unknown) {
+  const { params } = props as { params: { slug: string } };
+  const { slug } = params;
   // サーバーコンポーネントとして動作
 
-  const post = await getPost(params.slug);
+  const post = await getPost(slug);
   if (!post) return notFound();
   return (
     <main style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>

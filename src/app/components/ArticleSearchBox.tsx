@@ -1,8 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function ArticleSearchBox({ query, setQuery }: { query: string; setQuery: (v: string) => void }) {
-  // スマホ時はmain幅と揃える
+  // スマホ時はmain幅と揃える　テスト
   // 横幅は親(main)の幅に合わせる（スマホ・PC問わず）
   const outerStyle: React.CSSProperties = {
     width: '100%',

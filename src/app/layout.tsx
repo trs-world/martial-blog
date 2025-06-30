@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import React from "react";
 import Link from 'next/link';
-import Image from 'next/image';
+
+import ResponsiveNav from './components/ResponsiveNav';
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -35,22 +38,46 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className="navbar">
-          <Link href="/" className="navbar-logo" style={{display:'flex',alignItems:'center',marginRight:18}}>
-            <Image src="/logo.png" alt="ロゴ" height={32} width={40} style={{height:32, width:'auto', display:'block'}} priority />
+        <div className="topbar" style={{
+          width: '100vw',
+          maxWidth: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 28,
+          marginBottom: 10,
+          overflow: 'visible',
+        }}>
+          <Link href="/" className="navbar-logo" style={{
+            fontSize: '2.8rem',
+            fontWeight: 900,
+            letterSpacing: '0.07em',
+            background: 'linear-gradient(90deg, #ff3c3c 0%, #ffb347 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            color: '#ff3c3c',
+            textShadow: '2px 2px 6px rgba(0,0,0,0.12)',
+            textDecoration: 'none',
+            cursor: 'pointer',
+            transition: 'opacity 0.2s',
+            lineHeight: 1.2,
+            paddingBottom: 8,
+            overflow: 'visible',
+          }} aria-label="ホームへ">
+            Fight Fantasy
           </Link>
-          <a href="/">ホーム</a>
-          <a href="/posts?category=MMA" className="nav-btn nav-mma">MMA</a>
-          <a href="/posts?category=RIZIN" className="nav-btn nav-rizin">RIZIN</a>
-          <a href="/posts?category=ボクシング" className="nav-btn nav-boxing">ボクシング</a>
-          <a href="/posts?category=キックボクシング" className="nav-btn nav-kick">キックボクシング</a>
-        </nav>
+          
+        </div>
+
+        {/* ナビゲーションバー */}
+        <ResponsiveNav />
+
         {children}
         <footer>
           <div className="footer-nav">

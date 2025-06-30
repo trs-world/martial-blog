@@ -30,8 +30,8 @@ export default function MobileMenu() {
         </div>
         <ul className={styles.menuList}>
           <li><Link href="/" onClick={() => setOpen(false)}>ホーム</Link></li>
-          <li><Link href="/posts?category=MMA" onClick={() => setOpen(false)}>MMA</Link></li>
           <li><Link href="/posts?category=RIZIN" onClick={() => setOpen(false)}>RIZIN</Link></li>
+          <li><Link href="/posts?category=MMA" onClick={() => setOpen(false)}>MMA</Link></li>
           <li><Link href="/posts?category=ボクシング" onClick={() => setOpen(false)}>ボクシング</Link></li>
           <li><Link href="/posts?category=キックボクシング" onClick={() => setOpen(false)}>キックボクシング</Link></li>
           <li><Link href="/contact" onClick={() => setOpen(false)}>お問い合わせ</Link></li>
