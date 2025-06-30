@@ -44,7 +44,8 @@ import ArticleListClickable from "../components/ArticleListClickable";
 import Sidebar from "../components/Sidebar";
 import styles from "../components/ResponsiveArticleList.module.css";
 
-export default function PostsPage({ searchParams }) {
+export default function PostsPage(props: unknown) {
+  const { searchParams } = props as { searchParams: { category?: string | string[] } };
   const category = typeof searchParams.category === 'string' ? searchParams.category : Array.isArray(searchParams.category) ? searchParams.category[0] : undefined;
   let posts = getPosts();
   if (category) {
