@@ -22,7 +22,7 @@ function getPosts(): PostMeta[] {
       const fileContents = fs.readFileSync(filePath, 'utf8');
       const { data, content } = matter(fileContents);
       // 本文から最初の50文字を抜粋
-      let plain = content.replace(/[#>*\-\[\]!`_>\n]/g, '').trim();
+      const plain = content.replace(/[#>*\-\[\]!`_>\n]/g, '').trim();
       let excerpt = plain.slice(0, 50);
       if (plain.length > 50) excerpt += '...';
       return {

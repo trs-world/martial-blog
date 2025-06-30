@@ -33,7 +33,7 @@ export default function ContactPage() {
         setStatus('error');
         setError('送信に失敗しました。しばらくしてから再度お試しください。');
       }
-    } catch (err) {
+    } catch {
       setStatus('error');
       setError('送信中にエラーが発生しました。');
     }

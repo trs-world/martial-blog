@@ -45,11 +45,21 @@ export default function ResponsiveNav() {
               <Image src="/hamburger-back.png" alt="閉じる" width={32} height={32} className={styles.backIcon} />
             </button>
             <div className={styles.menuList}>
-              <a href="/" className="nav-btn nav-home" onClick={()=>setMenuOpen(false)}>ホーム</a>
-              <a href="/posts?category=RIZIN" className="nav-btn nav-rizin" onClick={()=>setMenuOpen(false)}>RIZIN</a>
-              <a href="/posts?category=MMA" className="nav-btn nav-mma" onClick={()=>setMenuOpen(false)}>MMA</a>
-              <a href="/posts?category=ボクシング" className="nav-btn nav-boxing" onClick={()=>setMenuOpen(false)}>ボクシング</a>
-              <a href="/posts?category=キックボクシング" className="nav-btn nav-kick" onClick={()=>setMenuOpen(false)}>キックボクシング</a>
+              <Link href="/" className="nav-btn nav-home">
+                <div onClick={()=>setMenuOpen(false)}>ホーム</div>
+              </Link>
+              <Link href="/posts?category=RIZIN" className="nav-btn nav-rizin">
+                <div onClick={()=>setMenuOpen(false)}>RIZIN</div>
+              </Link>
+              <Link href="/posts?category=MMA" className="nav-btn nav-mma">
+                <div onClick={()=>setMenuOpen(false)}>MMA</div>
+              </Link>
+              <Link href="/posts?category=ボクシング" className="nav-btn nav-boxing">
+                <div onClick={()=>setMenuOpen(false)}>ボクシング</div>
+              </Link>
+              <Link href="/posts?category=キックボクシング" className="nav-btn nav-kick">
+                <div onClick={()=>setMenuOpen(false)}>キックボクシング</div>
+              </Link>
             </div>
           </nav>
         </>
