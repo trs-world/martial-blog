@@ -50,7 +50,7 @@ export default async function PostPage({ params }: unknown) {
   const { slug } = params as { slug: string };
   // サーバーコンポーネントとして動作
 
-  const post = await getPost(params.slug);
+  const post = await getPost(slug);
   if (!post) return notFound();
   return (
     <main style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
