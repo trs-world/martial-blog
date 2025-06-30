@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function ArticleSearchBox({ query, setQuery }: { query: string; setQuery: (v: string) => void }) {
   // スマホ時はmain幅と揃える　テスト

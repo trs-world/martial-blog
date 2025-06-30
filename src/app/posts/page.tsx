@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import Link from 'next/link';
+
 
 interface PostMeta {
   title: string;
@@ -37,7 +37,7 @@ function getPosts(): PostMeta[] {
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-import Image from 'next/image';
+
 
 import ArticleListClickable from "../components/ArticleListClickable";
 
