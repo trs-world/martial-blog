@@ -46,7 +46,8 @@ async function getPost(slug: string): Promise<{ meta: PostMeta; contentHtml: str
 
 import PostBodyWithBoxedHeadings from '../PostBodyWithBoxedHeadings';
 
-export default async function PostPage({ params }: any) {
+export default async function PostPage({ params }: unknown) {
+  const { slug } = params as { slug: string };
   // サーバーコンポーネントとして動作
 
   const post = await getPost(params.slug);
