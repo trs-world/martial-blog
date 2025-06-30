@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import React from "react";
 import Link from 'next/link';
 
 import ResponsiveNav from './components/ResponsiveNav';
@@ -37,10 +38,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: { children: React.ReactNode }) {
+}: {
   children: React.ReactNode;
-}>) {
-
+}) {
   return (
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
