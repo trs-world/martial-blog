@@ -54,8 +54,8 @@ export default async function PostPage(props: unknown) {
   const post = await getPost(slug);
   if (!post) return notFound();
   return (
-    <main style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
-      <h1>{post.meta.title}</h1>
+    <main className="articleMain" style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
+      <h1 style={{marginTop:0}}>{post.meta.title}</h1>
       <div style={{ color: '#666' }}>{post.meta.date} / {post.meta.category}</div>
       <hr style={{ margin: '16px 0' }} />
       {/* サムネイル画像を線の下に表示 */}
@@ -66,6 +66,11 @@ export default async function PostPage(props: unknown) {
       />
       {/* 記事本文：h1は囲わず、h2〜h6のみ四角で囲う */}
       <PostBodyWithBoxedHeadings html={post.contentHtml} />
+      <div style={{textAlign:'right', marginTop:32}}>
+        <a href="/" style={{ color: '#b71c1c', fontWeight: 500, fontSize: '0.98em', textDecoration: 'underline', opacity: 0.85 }}>
+          トップへ戻る
+        </a>
+      </div>
     </main>
   );
 }

@@ -88,6 +88,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
           </div>
         </div>
       </main>
+
       {/* PC時のみ右側に表示 */}
       <aside className={styles.aside}>
         <div className={styles.desktopOnly}>
