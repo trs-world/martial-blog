@@ -64,7 +64,7 @@ export default function RootLayout({
             overflow: 'visible',
           }} aria-label="ホームへ">
             <span style={{
-  fontSize: '2.1rem',
+  fontSize: '3rem',
   fontWeight: 900,
   letterSpacing: '0.07em',
   background: 'linear-gradient(90deg, #ff3c3c 0%, #ffb347 100%)',
@@ -83,7 +83,7 @@ export default function RootLayout({
         <ResponsiveNav />
 
         {children}
-        <footer>
+        <footer style={{ marginBottom: 0, paddingBottom: 0 }}>
           <div className="footer-nav">
             <a href="/privacy-policy" className="footer-link"><span className="footer-arrow">&#9654;</span>プライバシーポリシー</a>
             <a href="/contact" className="footer-link"><span className="footer-arrow">&#9654;</span>お問い合わせ</a>

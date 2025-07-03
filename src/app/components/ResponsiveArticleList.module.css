@@ -4,23 +4,24 @@
   align-items: flex-start;
   justify-content: center;
   max-width: 1000px;
-  margin: 32px auto 0 auto;
-  padding: 0 12px;
+  margin: 16px auto 0 auto; /* 上の余白を減らす */
+  padding: 0 6px; /* 横の余白も減らす */
 }
 
 @media (max-width: 600px) {
   .container {
     flex-direction: column;
     align-items: stretch;
-    padding: 0 4px;
+    padding: 0 2px; /* 横の余白をさらに減らす */
+    margin-top: 8px; /* 上の余白も減らす */
   }
   .main {
     max-width: 100vw;
-    padding: 0 2vw 24px 2vw;
+    padding: 0 1vw 8px 1vw; /* 下余白も減らす */
   }
   .mobileOnly {
     max-width: 100vw;
-    padding: 0 2vw 0 2vw;
+    padding: 0 1vw 0 1vw;
     box-sizing: border-box;
   }
   .aside {
@@ -39,7 +40,7 @@
 .main {
   flex: 1;
   max-width: 700px;
-  padding: 0 18px 24px 18px;
+  padding: 0 8px 12px 8px; /* 全体的に余白を小さく */
   margin-top: 0;
   margin-left: auto;
   margin-right: auto;

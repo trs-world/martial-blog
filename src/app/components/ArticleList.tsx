@@ -53,7 +53,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                  <Image
+                  <Image unoptimized
                     src={post.thumbnail || '/sample-thumb.jpg'}
                     alt={post.title + 'のサムネイル'}
                     width={80}

@@ -33,18 +33,31 @@
   }
 }
 
+html, body {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Noto Sans JP', 'Yu Gothic', YuGothic, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
   background: #fff3e0;
   color: #2b1a10;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+  box-sizing: border-box;
+  position: relative;
 }
 
-html, body {
-  width: 100vw;
-  overflow-x: hidden;
+#__next, main {
+  min-height: calc(100vh - 120px); /* フッターの高さ分を引く。必要に応じて調整 */
+  box-sizing: border-box;
+}
+
+footer {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .navbar {

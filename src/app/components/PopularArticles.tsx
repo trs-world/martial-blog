@@ -27,7 +27,7 @@ export default function PopularArticles({ posts }: { posts: PopularArticle[] }) 
           {top3.map((article) => (
             <li key={article.slug} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
               <Link href={`/posts/${article.slug}`} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-                <Image
+                <Image unoptimized
                   src={article.thumbnail || '/sample-thumb.jpg'}
                   alt={article.title + 'のサムネイル'}
                   width={48}

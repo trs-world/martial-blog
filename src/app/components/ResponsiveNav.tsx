@@ -13,7 +13,7 @@ export default function ResponsiveNav() {
         {/* PC用カテゴリナビゲーション（中央寄せ、ロゴ→ホーム→RIZIN→…） */}
         <div className={styles.desktopNav} style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center', gap:8}}>
           <Link href="/" className="navbar-logo" style={{display:'flex', alignItems:'center'}}>
-            <Image src="/logo.png" alt="ロゴ" height={40} width={50} style={{height:'90%', width:'auto', display:'block'}} priority />
+            <Image src="/logo.png" alt="ロゴ" height={40} width={50} style={{height:'90%', width:'auto', display:'block'}} priority unoptimized />
           </Link>
           <Link href="/">ホーム</Link>
           <Link href="/posts?category=RIZIN">RIZIN</Link>
@@ -24,7 +24,7 @@ export default function ResponsiveNav() {
         {/* モバイル用ロゴ（左端） */}
         <div className={styles.mobileOnly}>
           <Link href="/" className="navbar-logo" style={{display:'flex', alignItems:'center', marginRight:8}}>
-            <Image src="/logo.png" alt="ロゴ" height={40} width={50} style={{height:'90%', width:'auto', display:'block'}} priority />
+            <Image src="/logo.png" alt="ロゴ" height={40} width={50} style={{height:'90%', width:'auto', display:'block'}} priority unoptimized />
           </Link>
         </div>
         {/* モバイル用ハンバーガー（右端） */}
