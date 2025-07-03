@@ -119,7 +119,16 @@
 .menuHeader {
   display: flex;
   align-items: center;
+  min-width: 0;
   padding: 16px;
+}
+.menuHeader span {
+  min-width: 0;
+  flex-shrink: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: clamp(1rem, 6vw, 1.4rem);
 }
 .menuList {
   list-style: none;

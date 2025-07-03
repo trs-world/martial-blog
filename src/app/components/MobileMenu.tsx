@@ -26,7 +26,16 @@ export default function MobileMenu() {
         </button>
         <div className={styles.menuHeader}>
           <Image src="/logo.png" alt="ロゴ" width={50} height={60} style={{height:60, width:'auto', display:'block'}} priority unoptimized />
-          <span style={{fontWeight:'bold',marginLeft:8}}>Martial Blog</span>
+          <span style={{
+  fontWeight:'bold',
+  marginLeft:8,
+  whiteSpace:'nowrap',
+  overflow:'hidden',
+  textOverflow:'ellipsis',
+  minWidth:0,
+  display:'block',
+  fontSize:'clamp(1rem,5vw,1.4rem)'
+}}>Martial Blog</span>
         </div>
         <ul className={styles.menuList}>
           <li><Link href="/" onClick={() => setOpen(false)}>ホーム</Link></li>
