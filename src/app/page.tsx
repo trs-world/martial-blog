@@ -38,8 +38,6 @@ function getPosts(): PostMeta[] {
 }
 
 export default function Home() {
-  // サーバーコンポーネントとして動作
-
   const posts = getPosts();
   return <ArticleList posts={posts} />;
 }

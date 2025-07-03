@@ -39,10 +39,7 @@ function getPosts(): PostMeta[] {
 
 
 
-import ArticleListClickable from "../components/ArticleListClickable";
-
-import Sidebar from "../components/Sidebar";
-import styles from "../components/ResponsiveArticleList.module.css";
+import ArticleList from "../components/ArticleList";
 
 export default function PostsPage(props: unknown) {
   const { searchParams } = props as { searchParams: { category?: string | string[] } };
@@ -51,22 +48,5 @@ export default function PostsPage(props: unknown) {
   if (category) {
     posts = posts.filter(post => post.category === category);
   }
-  return (
-    <div className={styles.container} style={{maxWidth: '1000px', margin: '32px auto 0 auto', padding: '0 12px'}}>
-      <main className={styles.main}>
-        <div style={{ marginTop: 20, marginBottom: 24 }}></div>
-        <ArticleListClickable posts={posts} />
-        {/* モバイル時のみ下部にSidebarを表示 */}
-        <div className={styles.mobileOnly}>
-          <Sidebar />
-        </div>
-      </main>
-      {/* PC時のみ右側にSidebarを表示 */}
-      <aside className={styles.aside}>
-        <div className={styles.desktopOnly}>
-          <Sidebar />
-        </div>
-      </aside>
-    </div>
-  );
+  return <ArticleList posts={posts} />;
 }
