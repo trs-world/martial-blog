@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
 import Link from 'next/link';
-import Image from 'next/image';
 
 import ResponsiveNav from './components/ResponsiveNav';
 
