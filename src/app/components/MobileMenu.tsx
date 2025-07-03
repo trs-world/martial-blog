@@ -25,7 +25,7 @@ export default function MobileMenu() {
           ×
         </button>
         <div className={styles.menuHeader}>
-          <Image src="/logo.png" alt="ロゴ" height={32} width={40} style={{height:32, width:'auto'}} priority unoptimized />
+          <Image src="/logo.png" alt="ロゴ" width={50} height={60} style={{height:60, width:'auto', display:'block'}} priority unoptimized />
           <span style={{fontWeight:'bold',marginLeft:8}}>Martial Blog</span>
         </div>
         <ul className={styles.menuList}>

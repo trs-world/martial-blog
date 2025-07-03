@@ -7,13 +7,13 @@ import styles from './MobileMenu.module.css';
 export default function ResponsiveNav() {
   const [menuOpen, setMenuOpen] = React.useState(false);
   return (
-    <nav className="navbar" style={{width:'100%', position:'relative', zIndex:10}}>
+    <nav className="navbar" style={{width:'100%', position:'relative', zIndex:10, height:56, overflow:'hidden'}}>
       {/* トップバー */}
       <div style={{display:'flex', alignItems:'center', width:'100%'}}>
         {/* PC用カテゴリナビゲーション（中央寄せ、ロゴ→ホーム→RIZIN→…） */}
         <div className={styles.desktopNav} style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center', gap:8}}>
           <Link href="/" className="navbar-logo" style={{display:'flex', alignItems:'center'}}>
-            <Image src="/logo.png" alt="ロゴ" height={40} width={50} style={{height:'90%', width:'auto', display:'block'}} priority unoptimized />
+            <Image src="/logo.png" alt="ロゴ" width={50} height={60} style={{height:60, width:'auto', display:'block'}} priority unoptimized />
           </Link>
           <Link href="/">ホーム</Link>
           <Link href="/posts?category=RIZIN">RIZIN</Link>
@@ -24,7 +24,7 @@ export default function ResponsiveNav() {
         {/* モバイル用ロゴ（左端） */}
         <div className={styles.mobileOnly}>
           <Link href="/" className="navbar-logo" style={{display:'flex', alignItems:'center', marginRight:8}}>
-            <Image src="/logo.png" alt="ロゴ" height={40} width={50} style={{height:'90%', width:'auto', display:'block'}} priority unoptimized />
+            <Image src="/logo.png" alt="ロゴ" width={50} height={60} style={{height:60, width:'auto', display:'block'}} priority unoptimized />
           </Link>
         </div>
         {/* モバイル用ハンバーガー（右端） */}

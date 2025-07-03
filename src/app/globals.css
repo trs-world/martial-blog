@@ -199,7 +199,6 @@ a.navbar-logo:hover, a.navbar-logo:active, a.navbar-logo:focus {
 
 /* ナビバーのロゴ画像を全ページで高さ90%に統一 */
 .navbar-logo img {
-  height: 90% !important;
   width: auto;
   display: block;
 }

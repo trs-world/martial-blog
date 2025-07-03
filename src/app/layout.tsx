@@ -18,20 +18,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "格闘技ブログ | Martial Blog",
+  title: "Fight Fantasy",
   description: "格闘技の最新情報をお届けします。",
   keywords: ["格闘技", "MMA", "キックボクシング", "UFC", "練習日記", "観戦記", "道具レビュー", "ブログ"],
   openGraph: {
-    title: "格闘技ブログ | Martial Blog",
+    title: "Fight Fantasy",
     description: "格闘技の練習・観戦・道具レビューなどを発信するブログ。初心者から経験者まで楽しめる最新情報をお届けします。",
     type: "website",
     locale: "ja_JP",
     url: "https://martial-blog.example.com/",
-    siteName: "格闘技ブログ | Martial Blog",
+    siteName: "Fight Fantasy",
   },
   twitter: {
     card: "summary_large_image",
-    title: "格闘技ブログ | Martial Blog",
+    title: "Fight Fantasy",
     description: "格闘技の練習・観戦・道具レビューなどを発信するブログ。初心者から経験者まで楽しめる最新情報をお届けします。",
   },
 };
