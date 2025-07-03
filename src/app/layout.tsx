@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import React from "react";
 import Link from 'next/link';
+import Image from 'next/image';
 
 import ResponsiveNav from './components/ResponsiveNav';
 
@@ -55,22 +56,26 @@ export default function RootLayout({
           overflow: 'visible',
         }}>
           <Link href="/" className="navbar-logo" style={{
-            fontSize: '2.8rem',
-            fontWeight: 900,
-            letterSpacing: '0.07em',
-            background: 'linear-gradient(90deg, #ff3c3c 0%, #ffb347 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            color: '#ff3c3c',
-            textShadow: '2px 2px 6px rgba(0,0,0,0.12)',
+            display: 'flex',
+            alignItems: 'center',
             textDecoration: 'none',
             cursor: 'pointer',
             transition: 'opacity 0.2s',
-            lineHeight: 1.2,
             paddingBottom: 8,
             overflow: 'visible',
           }} aria-label="ホームへ">
-            Fight Fantasy
+            <span style={{
+  fontSize: '2.1rem',
+  fontWeight: 900,
+  letterSpacing: '0.07em',
+  background: 'linear-gradient(90deg, #ff3c3c 0%, #ffb347 100%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  color: '#ff3c3c',
+  textShadow: '2px 2px 6px rgba(0,0,0,0.12)',
+  lineHeight: 1.2,
+  display: 'inline-block',
+}}>Fight Fantasy</span>
           </Link>
           
         </div>
