@@ -41,7 +41,7 @@
   flex: 1;
   max-width: 700px;
   padding: 0 8px 12px 8px; /* 全体的に余白を小さく */
-  margin-top: 20px;
+  margin-top: 0;
   margin-left: auto;
   margin-right: auto;
 }

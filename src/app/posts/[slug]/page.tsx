@@ -45,6 +45,8 @@ async function getPost(slug: string): Promise<{ meta: PostMeta; contentHtml: str
 }
 
 import PostBodyWithBoxedHeadings from '../PostBodyWithBoxedHeadings';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function PostPage(props: unknown) {
   const { params } = props as { params: { slug: string } };
@@ -59,17 +61,20 @@ export default async function PostPage(props: unknown) {
       <div style={{ color: '#666' }}>{post.meta.date} / {post.meta.category}</div>
       <hr style={{ margin: '16px 0' }} />
       {/* サムネイル画像を線の下に表示 */}
-      <img
+      <Image
         src={post.meta.thumbnail ? post.meta.thumbnail : '/sample-thumb.jpg'}
         alt="記事サムネイル"
-        style={{ width: '100%', maxWidth: 360, display: 'block', margin: '24px auto', borderRadius: 12 }}
+        width={360}
+        height={240}
+        style={{ width: '100%', maxWidth: 360, display: 'block', margin: '24px auto', borderRadius: 12, height: 'auto' }}
+        unoptimized
       />
       {/* 記事本文：h1は囲わず、h2〜h6のみ四角で囲う */}
       <PostBodyWithBoxedHeadings html={post.contentHtml} />
       <div style={{textAlign:'right', marginTop:32}}>
-        <a href="/" style={{ color: '#b71c1c', fontWeight: 500, fontSize: '0.98em', textDecoration: 'underline', opacity: 0.85 }}>
+        <Link href="/" style={{ color: '#b71c1c', fontWeight: 500, fontSize: '0.98em', textDecoration: 'underline', opacity: 0.85 }}>
           トップへ戻る
-        </a>
+        </Link>
       </div>
     </main>
   );
