@@ -11,7 +11,7 @@ export default function ResponsiveNav() {
       {/* トップバー */}
       <div style={{display:'flex', alignItems:'center', width:'100%'}}>
         {/* PC用カテゴリナビゲーション（中央寄せ、ロゴ→ホーム→RIZIN→…） */}
-        <div className={styles.desktopNav} style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center', gap:8}}>
+        <div className={styles.desktopNav} style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center'}}>
           <Link href="/" className="navbar-logo" style={{display:'flex', alignItems:'center'}}>
             <Image src="/logo.png" alt="ロゴ" width={50} height={60} style={{height:60, width:'auto', display:'block'}} priority unoptimized />
           </Link>
