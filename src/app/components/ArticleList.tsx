@@ -65,7 +65,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
                       <span style={{ marginRight: 8 }}>{post.date}</span>
                       {(() => {
                          // カテゴリが配列ならそのまま、文字列ならカンマ・スペースで分割
-                         let cats = Array.isArray(post.category)
+                         const cats = Array.isArray(post.category)
                            ? post.category
                            : typeof post.category === 'string'
                              ? post.category.split(/[,\s]+/).filter(Boolean)
