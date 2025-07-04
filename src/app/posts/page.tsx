@@ -46,7 +46,14 @@ export default function PostsPage(props: unknown) {
   const category = typeof searchParams.category === 'string' ? searchParams.category : Array.isArray(searchParams.category) ? searchParams.category[0] : undefined;
   let posts = getPosts();
   if (category) {
-    posts = posts.filter(post => post.category === category);
+    posts = posts.filter(post => {
+      const cats = Array.isArray(post.category)
+        ? post.category
+        : typeof post.category === 'string'
+          ? post.category.split(/[\,\s]+/).filter(Boolean)
+          : [];
+      return cats.includes(category);
+    });
   }
   return <ArticleList posts={posts} />;
 }
