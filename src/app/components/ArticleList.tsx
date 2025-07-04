@@ -19,10 +19,15 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
   const [query, setQuery] = useState('');
   const filtered = posts.filter(post => {
     const q = query.toLowerCase();
+    const catStr = Array.isArray(post.category)
+      ? post.category.join(' ')
+      : typeof post.category === 'string'
+        ? post.category
+        : '';
     return (
       post.title.toLowerCase().includes(q) ||
       post.excerpt.toLowerCase().includes(q) ||
-      post.category.toLowerCase().includes(q)
+      catStr.toLowerCase().includes(q)
     );
   });
 
