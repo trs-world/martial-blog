@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ArticleSearchBox from './ArticleSearchBox';
 import PopularArticles from './PopularArticles';
+import ProfileCard from './ProfileCard';
 import styles from './ResponsiveArticleList.module.css';
 
 type PostMeta = {
@@ -115,6 +116,9 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
           <ArticleSearchBox query={query} setQuery={setQuery} />
           <div style={{ marginTop: 24 }}>
             <PopularArticles posts={popularArticles} />
+            <div style={{ marginTop: 24 }}>
+              <ProfileCard />
+            </div>
           </div>
         </div>
       </main>
@@ -125,6 +129,9 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
           <ArticleSearchBox query={query} setQuery={setQuery} />
           <div style={{ marginTop: 24 }}>
             <PopularArticles posts={popularArticles} />
+            <div style={{ marginTop: 24 }}>
+              <ProfileCard />
+            </div>
           </div>
         </div>
       </aside>
