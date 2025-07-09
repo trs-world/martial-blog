@@ -54,6 +54,7 @@
   to { right: 0; }
 }
 .closeBtn {
+  color: #f3e9e2 !important;
   background: none;
   border: none;
   font-size: 2rem;
@@ -95,6 +96,89 @@
   padding: 0 !important;
   margin: 0 !important;
 }
+.menuList {
+  display: block;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: visible;
+}
+.menuList li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #2b1a10;
+} 
+
+.menuList a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-height: 48px !important;
+  padding: 0 16px !important;
+  color: #fff3e0 !important;
+  font-weight: bold !important;
+  font-size: 1.1em !important;
+  border-top: 1px solid #f3e9e2 !important;
+  border-bottom: 1px solid #f3e9e2 !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+.menuList a:first-child {
+  border-top: none !important;
+}
+.menuList a:last-child {
+  border-bottom: none !important;
+}
+.menuList a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: transparent;
+}
+.menuList a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.searchBoxLi {
+  background: transparent;
+  border-top: 1.5px solid #ead9c3;
+  border-bottom: 1.5px solid #ead9c3;
+  margin: 12px 0 12px 0;
+  padding: 0 0 0 0;
+  box-shadow: none;
+}
+.menuList li:last-child {
+  border-bottom: none;
+}
+.menuList li:first-child {
+  border-top: 1.5px solid #ead9c3;
+}
+.menuList a {
+  font-size: 0.78em;
+  padding: 2px 4px;
+  line-height: 1.05;
+  /* height指定なし */
+  display: block;
+  color: #fff3e0;
+}
+
+.navbar a {
+  height: 15%;
+}
+
+.navbar a {
+  height: 15%;
+}
+.menuList li + li {
+  margin-top: 0;
+}
+
 
 .menuList .nav-btn {
   flex: 0 0 15%;
