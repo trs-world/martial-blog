@@ -320,3 +320,9 @@ code, pre {
   font-weight: bold;
 }
 
+@media (max-width: 768px) {
+  .navbar a {
+    height: 15%;
+  }
+}
+

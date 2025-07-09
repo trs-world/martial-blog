@@ -18,6 +18,7 @@ type PostMeta = {
 
 export default function ArticleList({ posts }: { posts: PostMeta[] }) {
   const [query, setQuery] = useState('');
+  // 検索フィルタ
   const filtered = posts.filter(post => {
     const q = query.toLowerCase();
     const catStr = Array.isArray(post.category)
@@ -38,9 +39,11 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        
+
         {filtered.length === 0 ? (
-          <div style={{ color: '#111', fontWeight: 500, fontSize: '1.1em', textAlign: 'center', margin: '32px 0' }}>記事がありません</div>
+          <div style={{ color: '#111', fontWeight: 500, fontSize: '1.1em', textAlign: 'center', margin: '32px 0' }}>
+            記事がありません
+          </div>
         ) : (
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginTop: 20 }}>
             {filtered.map((post) => (
@@ -70,31 +73,31 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
                     <div style={{ color: '#65331A', fontSize: '0.95em', marginBottom: 2 }}>
                       <span style={{ marginRight: 8 }}>{post.date}</span>
                       {(() => {
-                         // カテゴリが配列ならそのまま、文字列ならカンマ・スペースで分割
-                         const cats = Array.isArray(post.category)
-                           ? post.category
-                           : typeof post.category === 'string'
-                             ? post.category.split(/[,\s]+/).filter(Boolean)
-                             : [];
-                         return cats.map((cat: string, idx: number) => (
-                           <span
-                             key={cat + idx}
-                             style={{
-                               background: '#fbe9e7',
-                               color: '#b71c1c',
-                               borderRadius: 4,
-                               padding: '2px 7px',
-                               fontSize: '0.9em',
-                               marginLeft: idx === 0 ? 2 : 6,
-                               marginRight: 0,
-                               display: 'inline-block',
-                               fontWeight: 600,
-                             }}
-                           >
-                             {cat}
-                           </span>
-                         ));
-                       })()}
+                        // カテゴリが配列ならそのまま、文字列ならカンマ・スペースで分割
+                        const cats = Array.isArray(post.category)
+                          ? post.category
+                          : typeof post.category === 'string'
+                            ? post.category.split(/[,\s]+/).filter(Boolean)
+                            : [];
+                        return cats.map((cat: string, idx: number) => (
+                          <span
+                            key={cat + idx}
+                            style={{
+                              background: '#fbe9e7',
+                              color: '#b71c1c',
+                              borderRadius: 4,
+                              padding: '2px 7px',
+                              fontSize: '0.9em',
+                              marginLeft: idx === 0 ? 2 : 6,
+                              marginRight: 0,
+                              display: 'inline-block',
+                              fontWeight: 600,
+                            }}
+                          >
+                            {cat}
+                          </span>
+                        ));
+                      })()}
                     </div>
                     <Link href={`/posts/${post.slug}`} style={{ fontWeight: 'bold', fontSize: '1.1em', marginBottom: 4, color: '#b71c1c', textDecoration: 'underline', display: 'inline-block' }} aria-label={`${post.title} の記事ページへ移動`}>
                       {post.title}
