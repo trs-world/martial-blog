@@ -2,12 +2,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ArticleSearchBox from "./ArticleSearchBox";
 import styles from "./MobileMenu.module.css";
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   return (
     <>
       <button
