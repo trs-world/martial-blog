@@ -47,9 +47,9 @@ export default function MobileMenu() {
               <li><Link href="/posts?category=MMA" onClick={() => setOpen(false)}>MMA</Link></li>
               <li><Link href="/posts?category=ボクシング" onClick={() => setOpen(false)}>ボクシング</Link></li>
               <li><Link href="/posts?category=キックボクシング" onClick={() => setOpen(false)}>キックボクシング</Link></li>
-
               <li><Link href="/contact" onClick={() => setOpen(false)}>お問い合わせ</Link></li>
             </ul>
+          </div>
         </div>
       </nav>
     </>
