@@ -35,7 +35,8 @@ export async function POST(req: NextRequest) {
       replyTo: email,
     });
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error('メール送信エラー:', err);
     return NextResponse.json({ error: 'メール送信に失敗しました。' }, { status: 500 });
   }
 }
