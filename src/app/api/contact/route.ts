@@ -28,10 +28,11 @@ export async function POST(req: NextRequest) {
 
   try {
     await transporter.sendMail({
-      from: email,
+      from: process.env.YAHOO_USER,
       to,
       subject: subject || 'お問い合わせ',
       text: `お名前: ${name}\nメール: ${email}\n題名: ${subject}\n\n${message}`,
+      replyTo: email,
     });
     return NextResponse.json({ ok: true });
   } catch {
