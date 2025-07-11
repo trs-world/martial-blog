@@ -64,7 +64,7 @@ export default function RootLayout({
             overflow: 'visible',
           }} aria-label="ホームへ">
             <span style={{
-  fontSize: '3rem',
+  fontSize: '2.5rem',
   fontWeight: 900,
   letterSpacing: '0.07em',
   background: 'linear-gradient(90deg, #ff3c3c 0%, #ffb347 100%)',

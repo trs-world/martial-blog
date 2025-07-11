@@ -57,8 +57,16 @@ export default async function PostPage(props: unknown) {
   if (!post) return notFound();
   return (
     <main className="articleMain" style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
-      <h1 style={{marginTop:0}}>{post.meta.title}</h1>
-      <div style={{ color: '#666' }}>{post.meta.date} / {post.meta.category}</div>
+      <h1 style={{marginTop:0, fontSize:'1.5em'}}>{post.meta.title}</h1>
+      <div style={{ color: '#666' }}>
+  {post.meta.date} / {
+    Array.isArray(post.meta.category)
+      ? post.meta.category.join(', ')
+      : typeof post.meta.category === 'string'
+        ? post.meta.category
+        : ''
+  }
+</div>
       <hr style={{ margin: '16px 0' }} />
       {/* サムネイル画像を線の下に表示 */}
       <Image
