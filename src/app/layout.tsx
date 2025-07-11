@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Fight Fantasy",
-    description: "格闘技の練習・観戦・道具レビューなどを発信するブログ。初心者から経験者まで楽しめる最新情報をお届けします。",
+    description: "RIZIN・UFCを中心に格闘技に関する最新情報をまとめるブログ。初心者からコアファンにまでわかりやすい情報をお届けします。",
   },
 };
 
