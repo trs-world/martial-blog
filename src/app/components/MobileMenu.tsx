@@ -22,8 +22,8 @@ export default function MobileMenu() {
       )}
       <nav className={open ? styles.menuOpen : styles.menu}>
         <button className={styles.closeBtn} aria-label="閉じる" onClick={() => setOpen(false)}>
-          ×
-        </button>
+  <Image src="/hamburger-back.png" alt="戻る" width={24} height={24} style={{display:'block'}} priority unoptimized />
+</button>
         <div style={{display: 'flex', flexDirection: 'column', flex: 1, height: '100%'}}>
           <div>
             <div className={styles.menuHeader}>

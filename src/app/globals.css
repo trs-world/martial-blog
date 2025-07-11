@@ -323,6 +323,7 @@ code, pre {
 @media (max-width: 768px) {
   .navbar a {
     height: 15%;
+    border-left: none !important;
   }
 }
 
