@@ -49,15 +49,30 @@ export async function GET() {
     })) || [];
 
     return NextResponse.json({ articles });
-  } catch (error: any) {
+  } catch (error) {
     // 詳細なエラー情報を出力
-    console.error('GA4 API error:', error, error?.message, error?.stack);
+    let message = 'Unknown error';
+    let stack = '';
+    let errorDetail = '';
+    if (typeof error === 'object' && error !== null) {
+      if ('message' in error && typeof error.message === 'string') message = error.message;
+      if ('stack' in error && typeof error.stack === 'string') stack = error.stack;
+      try {
+        errorDetail = JSON.stringify(error, Object.getOwnPropertyNames(error));
+      } catch {
+        errorDetail = String(error);
+      }
+    } else {
+      message = String(error);
+      errorDetail = String(error);
+    }
+    console.error('GA4 API error:', error, message, stack);
     // エラー詳細をAPIレスポンスにも含める（デバッグ用。公開時は削除推奨）
     return NextResponse.json({ 
       error: 'Failed to fetch popular articles.', 
-      errorDetail: typeof error === 'object' ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : String(error),
-      message: error?.message,
-      stack: error?.stack
+      errorDetail,
+      message,
+      stack
     }, { status: 500 });
   }
 }
