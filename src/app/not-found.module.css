@@ -1,0 +1,12 @@
+.notFoundTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--main-red);
+}
+
+@media (max-width: 600px) {
+  .notFoundTitle {
+    font-size: 2rem;
+  }
+}
