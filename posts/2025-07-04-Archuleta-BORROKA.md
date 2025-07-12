@@ -2,7 +2,7 @@
 title: "ファン・アーチュレッタがBORROKAフェザー級王者に！てかBORROKAってなに？RIZINに戻ってくるの？"
 date: "2025-07-04"
 category: "MMA"
-thumbnail: "/2025-07-04-arthuretta-borocca/arthu.jpg"
+thumbnail: "/2025-07-04-Archuleta-BORROKA/arthu.jpg"
 ---
 
 アメリカのベテラン格闘家 **フアン・アーチュレッタ**（Juan Archuleta）が、2025年6月21日、米国ネバダ州ラフリンで開催された**BORROKA 3**のメインイベントで見事な飛び膝KOを決め、**Borrokaフェザー級王者**のベルトを獲得しました。
@@ -12,16 +12,16 @@ thumbnail: "/2025-07-04-arthuretta-borocca/arthu.jpg"
 ---
 
 ## ✅ BORROKAとは？
-![Borocca](/2025-07-04-arthuretta-borocca/borocca.jpg)
+![Borocca](/2025-07-04-Archuleta-BORROKA/borocca.jpg)
 実は、この団体名は**「Borroka Promotions」**という、ラスベガス近郊ラフリンを拠点とする地域プロモーション。  
 2025年6月時点では知名度は高くないものの、アーチュレッタのようなビッグネームを呼び込むことで注目度を一気にアップさせています。
 
 ### ◾ BORROKA 3のメインイベント
 - **対戦相手**：Dennis Linton（10-3-1、KOTCフェザー＆ライト級王者）
-- **勝利方法**：アーチュレッタが完璧な飛び膝蹴りでダウンを奪い、2R KO勝利  [oai_citation:1‡si.com](https://www.si.com/fannation/mma/news/bellator-rizin-juan-archuleta-mma-knockout-of-the-year?utm_source=chatgpt.com)。
+- **勝利方法**：アーチュレッタが完璧な飛び膝蹴りでダウンを奪い、2R KO勝利  [海外の記事](https://www.si.com/fannation/mma/news/bellator-rizin-juan-archuleta-mma-knockout-of-the-year?utm_source=chatgpt.com)。
 
 米国ファンの反応も上々。Redditでは…
-> “Shout out to my cousin Juan Archuleta for winning his first fight in the U.S. in 2.5 years and claiming the Borroka Featherweight Title.(いとこのフアン・アルチュレタが2年半ぶりにアメリカで勝利し、Boroccaフェザー級タイトルを獲得したことを祝福します。)”  [oai_citation:2‡reddit.com](https://www.reddit.com/r/MMA/comments/1lin7u8/juan_archuleta_breaks_3_fight_losing_streak_in/?utm_source=chatgpt.com)
+> “Shout out to my cousin Juan Archuleta for winning his first fight in the U.S. in 2.5 years and claiming the Borroka Featherweight Title.(いとこのフアン・アルチュレタが2年半ぶりにアメリカで勝利し、Boroccaフェザー級タイトルを獲得したことを祝福します。)”  [家族の反応](https://www.reddit.com/r/MMA/comments/1lin7u8/juan_archuleta_breaks_3_fight_losing_streak_in/?utm_source=chatgpt.com)
 
 …と家族からの喜びの声も飛び交っています。
 
@@ -36,7 +36,7 @@ thumbnail: "/2025-07-04-arthuretta-borocca/arthu.jpg"
 ---
 
 ## 🤔 RIZINに戻ってくるのか？
-![RIZIN](/2025-07-04-arthuretta-borocca/RIZIN.jpg)
+![RIZIN](/2025-07-04-Archuleta-BORROKA/RIZIN.jpg)
 現時点（2025年6月）では、アーチュレッタ本人やRIZIN関係者からの**再入団発表はありません**。ただしRIZINへの復帰を願う声は多く、興行的にも美味しいカードになり得ます。
 
 筆者個人としては、**過去にタイトルも獲っている実績ある選手なので、本気で再起する気があるならまたRIZINに戻ってきてほしい！**  

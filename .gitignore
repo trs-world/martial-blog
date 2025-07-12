@@ -38,4 +38,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Googleサービスアカウント秘密鍵
+credentials/analytics-service-account.json
 next-env.d.ts

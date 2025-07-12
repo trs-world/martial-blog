@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google-analytics/data": "^5.2.0",
+    "bcrypt": "^5.1.1",
     "gray-matter": "^4.0.3",
     "next": "15.3.4",
     "nodemailer": "^7.0.3",
@@ -16,8 +18,7 @@
     "react-dom": "^19.0.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
-    "remark-html": "^16.0.1",
-    "bcrypt": "^5.1.1"
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
