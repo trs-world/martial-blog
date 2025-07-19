@@ -13,7 +13,7 @@ export default function Sidebar({ popularArticles = defaultPopularArticles }: { 
     <aside style={{ minWidth: 260, maxWidth: 340, marginLeft: 24 }}>
       <ArticleSearchBox query={query} setQuery={setQuery} />
       <div style={{ marginTop: 24 }}>
-        <PopularArticles posts={popularArticles} />
+        {/* <PopularArticles posts={popularArticles} /> */}
       </div>
     </aside>
   );

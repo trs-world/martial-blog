@@ -118,7 +118,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
         <div className={styles.mobileOnly}>
           <ArticleSearchBox query={query} setQuery={setQuery} />
           <div style={{ marginTop: 24 }}>
-            <PopularArticles posts={popularArticles} />
+            {/* <PopularArticles posts={popularArticles} /> */}
             <div style={{ marginTop: 24 }}>
               <ProfileCard />
             </div>
@@ -131,7 +131,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
         <div className={styles.desktopOnly}>
           <ArticleSearchBox query={query} setQuery={setQuery} />
           <div style={{ marginTop: 24 }}>
-            <PopularArticles posts={popularArticles} />
+            {/* <PopularArticles posts={popularArticles} /> */}
             <div style={{ marginTop: 24 }}>
               <ProfileCard />
             </div>
