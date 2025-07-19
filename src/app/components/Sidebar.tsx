@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import ArticleSearchBox from "./ArticleSearchBox";
-import PopularArticles, { PopularArticle } from "./PopularArticles";
+// import PopularArticles, { PopularArticle } from "./PopularArticles";
 
-// ダミーデータ（本来はAPIやpropsから渡す）
-const defaultPopularArticles: PopularArticle[] = [];
-
-export default function Sidebar({ popularArticles = defaultPopularArticles }: { popularArticles?: PopularArticle[] }) {
+// export default function Sidebar({ popularArticles = defaultPopularArticles }: { popularArticles?: PopularArticle[] }) {
+// const defaultPopularArticles: PopularArticle[] = [];
+export default function Sidebar() {
   const [query, setQuery] = useState("");
   // Sidebar自体は検索クエリ状態のみ管理し、親で使いたい場合はリフトアップ
   return (

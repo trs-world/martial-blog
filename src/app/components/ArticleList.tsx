@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ArticleSearchBox from './ArticleSearchBox';
-import PopularArticles from './PopularArticles';
 import ProfileCard from './ProfileCard';
 import styles from './ResponsiveArticleList.module.css';
+// import PopularArticles from './PopularArticles';
 
 type PostMeta = {
   title: string;
@@ -34,7 +34,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
   });
 
   // 人気記事データ（本来はpropsやAPIから取得）
-  const popularArticles: import('./PopularArticles').PopularArticle[] = [];
+  // const popularArticles: import('./PopularArticles').PopularArticle[] = [];
 
   return (
     <div className={styles.container}>
