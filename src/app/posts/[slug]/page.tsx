@@ -5,6 +5,7 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import remarkGfm from 'remark-gfm';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 interface PostMeta {
   title: string;
@@ -47,6 +48,55 @@ async function getPost(slug: string): Promise<{ meta: PostMeta; contentHtml: str
 import PostBodyWithBoxedHeadings from '../PostBodyWithBoxedHeadings';
 import Image from 'next/image';
 import Link from 'next/link';
+
+// generateMetadata function for dynamic Open Graph tags
+export async function generateMetadata(
+  { params }: { params: { slug: string } }
+): Promise<Metadata> {
+  const post = await getPost(params.slug);
+  
+  if (!post) {
+    return {
+      title: 'Article Not Found - Fight Fantasy',
+      description: 'The requested article could not be found.',
+    };
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://martial-blog.netlify.app';
+  const articleUrl = `${baseUrl}/posts/${params.slug}`;
+  const imageUrl = post.meta.thumbnail 
+    ? `${baseUrl}${post.meta.thumbnail}`
+    : `${baseUrl}/sample-thumb.jpg`;
+
+  return {
+    title: `${post.meta.title} - Fight Fantasy`,
+    description: `${post.meta.title} | ${post.meta.category} | Fight Fantasy - 格闘技の最新情報をお届けします。`,
+    keywords: ['格闘技', 'MMA', 'キックボクシング', 'UFC', 'RIZIN', post.meta.category],
+    openGraph: {
+      title: post.meta.title,
+      description: `${post.meta.title} | ${post.meta.category} | Fight Fantasy`,
+      type: 'article',
+      locale: 'ja_JP',
+      url: articleUrl,
+      siteName: 'Fight Fantasy',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.meta.title,
+        },
+      ],
+      publishedTime: post.meta.date,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.meta.title,
+      description: `${post.meta.title} | ${post.meta.category} | Fight Fantasy`,
+      images: [imageUrl],
+    },
+  };
+}
 
 export default async function PostPage(props: unknown) {
   const { params } = props as { params: { slug: string } };
