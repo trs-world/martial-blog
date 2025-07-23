@@ -51,9 +51,10 @@ import Link from 'next/link';
 
 // generateMetadata function for dynamic Open Graph tags
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
-  const post = await getPost(params.slug);
+  const resolvedParams = await params;
+  const post = await getPost(resolvedParams.slug);
   
   if (!post) {
     return {
@@ -63,7 +64,7 @@ export async function generateMetadata(
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://martial-blog.netlify.app';
-  const articleUrl = `${baseUrl}/posts/${params.slug}`;
+  const articleUrl = `${baseUrl}/posts/${resolvedParams.slug}`;
   const imageUrl = post.meta.thumbnail 
     ? `${baseUrl}${post.meta.thumbnail}`
     : `${baseUrl}/sample-thumb.jpg`;
@@ -99,8 +100,9 @@ export async function generateMetadata(
 }
 
 export default async function PostPage(props: unknown) {
-  const { params } = props as { params: { slug: string } };
-  const { slug } = params;
+  const { params } = props as { params: Promise<{ slug: string }> };
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
   // サーバーコンポーネントとして動作
 
   const post = await getPost(slug);
