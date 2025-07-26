@@ -65,13 +65,21 @@ export async function generateMetadata(
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://martial-blog.netlify.app';
   const articleUrl = `${baseUrl}/posts/${resolvedParams.slug}`;
-  const imageUrl = post.meta.thumbnail 
-    ? `${baseUrl}${post.meta.thumbnail}`
+  
+  // Ensure proper image URL construction - remove leading slash if present
+  const thumbnailPath = post.meta.thumbnail?.startsWith('/') 
+    ? post.meta.thumbnail.substring(1) 
+    : post.meta.thumbnail;
+  
+  const imageUrl = thumbnailPath 
+    ? `${baseUrl}/${thumbnailPath}`
     : `${baseUrl}/sample-thumb.jpg`;
+
+  const description = `${post.meta.title} | ${post.meta.category} | Fight Fantasy - 格闘技の最新情報をお届けします。`;
 
   return {
     title: `${post.meta.title} - Fight Fantasy`,
-    description: `${post.meta.title} | ${post.meta.category} | Fight Fantasy - 格闘技の最新情報をお届けします。`,
+    description: description,
     keywords: ['格闘技', 'MMA', 'キックボクシング', 'UFC', 'RIZIN', post.meta.category],
     openGraph: {
       title: post.meta.title,
@@ -92,9 +100,21 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
+      site: '@FightFantasy', // Add your Twitter handle if you have one
+      creator: '@FightFantasy', // Add your Twitter handle if you have one
       title: post.meta.title,
       description: `${post.meta.title} | ${post.meta.category} | Fight Fantasy`,
-      images: [imageUrl],
+      images: {
+        url: imageUrl,
+        alt: post.meta.title,
+        width: 1200,
+        height: 630,
+      },
+    },
+    // Add additional meta tags for better Twitter compatibility
+    other: {
+      'twitter:image': imageUrl,
+      'twitter:image:alt': post.meta.title,
     },
   };
 }
