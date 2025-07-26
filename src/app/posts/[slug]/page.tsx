@@ -60,10 +60,11 @@ export async function generateMetadata(
     return {
       title: 'Article Not Found - Fight Fantasy',
       description: 'The requested article could not be found.',
+      metadataBase: new URL('https://martial-blog.netlify.app'),
     };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://martial-blog.netlify.app';
+  const baseUrl = 'https://martial-blog.netlify.app';
   const articleUrl = `${baseUrl}/posts/${resolvedParams.slug}`;
   
   // Ensure proper image URL construction - remove leading slash if present
@@ -78,9 +79,18 @@ export async function generateMetadata(
   const description = `${post.meta.title} | ${post.meta.category} | Fight Fantasy - 格闘技の最新情報をお届けします。`;
 
   return {
+    metadataBase: new URL(baseUrl),
     title: `${post.meta.title} - Fight Fantasy`,
     description: description,
     keywords: ['格闘技', 'MMA', 'キックボクシング', 'UFC', 'RIZIN', post.meta.category],
+    authors: [{ name: 'Fight Fantasy' }],
+    creator: 'Fight Fantasy',
+    publisher: 'Fight Fantasy',
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
     openGraph: {
       title: post.meta.title,
       description: `${post.meta.title} | ${post.meta.category} | Fight Fantasy`,
@@ -94,27 +104,36 @@ export async function generateMetadata(
           width: 1200,
           height: 630,
           alt: post.meta.title,
+          type: 'image/png',
         },
       ],
       publishedTime: post.meta.date,
     },
     twitter: {
       card: 'summary_large_image',
-      site: '@FightFantasy', // Add your Twitter handle if you have one
-      creator: '@FightFantasy', // Add your Twitter handle if you have one
+      site: '@FightFantasy',
+      creator: '@FightFantasy',
       title: post.meta.title,
       description: `${post.meta.title} | ${post.meta.category} | Fight Fantasy`,
-      images: {
-        url: imageUrl,
-        alt: post.meta.title,
-        width: 1200,
-        height: 630,
-      },
+      images: [
+        {
+          url: imageUrl,
+          alt: post.meta.title,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
-    // Add additional meta tags for better Twitter compatibility
-    other: {
-      'twitter:image': imageUrl,
-      'twitter:image:alt': post.meta.title,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
   };
 }
@@ -127,6 +146,17 @@ export default async function PostPage(props: unknown) {
 
   const post = await getPost(slug);
   if (!post) return notFound();
+  
+  // 画像URLを生成
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://martial-blog.netlify.app';
+  const thumbnailPath = post.meta.thumbnail?.startsWith('/') 
+    ? post.meta.thumbnail.substring(1) 
+    : post.meta.thumbnail;
+  const imageUrl = thumbnailPath 
+    ? `${baseUrl}/${thumbnailPath}`
+    : `${baseUrl}/sample-thumb.jpg`;
+  const articleUrl = `${baseUrl}/posts/${slug}`;
+  
   return (
     <main className="articleMain" style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
       <h1 style={{marginTop:0, fontSize:'1.5em'}}>{post.meta.title}</h1>
