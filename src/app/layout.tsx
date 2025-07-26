@@ -21,6 +21,26 @@ export const metadata: Metadata = {
   title: "Fight Fantasy",
   description: "格闘技の最新情報をお届けします。",
   keywords: ["格闘技", "MMA", "キックボクシング", "UFC", "練習日記", "観戦記", "道具レビュー", "ブログ"],
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon.png', sizes: '16x16', type: 'image/png' },
+    ],
+    shortcut: '/icon.png',
+    apple: [
+      { url: '/icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/icon.png',
+      },
+      {
+        rel: 'mask-icon',
+        url: '/icon.png',
+      },
+    ],
+  },
   openGraph: {
     title: "Fight Fantasy",
     description: "格闘技の練習・観戦・道具レビューなどを発信するブログ。初心者から経験者まで楽しめる最新情報をお届けします。",
