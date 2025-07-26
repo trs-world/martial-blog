@@ -147,16 +147,6 @@ export default async function PostPage(props: unknown) {
   const post = await getPost(slug);
   if (!post) return notFound();
   
-  // 画像URLを生成
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://martial-blog.netlify.app';
-  const thumbnailPath = post.meta.thumbnail?.startsWith('/') 
-    ? post.meta.thumbnail.substring(1) 
-    : post.meta.thumbnail;
-  const imageUrl = thumbnailPath 
-    ? `${baseUrl}/${thumbnailPath}`
-    : `${baseUrl}/sample-thumb.jpg`;
-  const articleUrl = `${baseUrl}/posts/${slug}`;
-  
   return (
     <main className="articleMain" style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
       <h1 style={{marginTop:0, fontSize:'1.5em'}}>{post.meta.title}</h1>

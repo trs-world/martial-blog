@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function NotFound() {
   return (
@@ -14,10 +15,13 @@ export default function NotFound() {
       <div style={{ fontSize: '2rem', fontWeight: 800, marginBottom: 16, color: 'var(--main-red)' }}>
         ページが存在しません！
       </div>
-      <img
+      <Image
         src="/404-suten.png"
         alt="ページが存在しません"
-        style={{ width: '320px', maxWidth: '90vw', borderRadius: 12 }}
+        width={320}
+        height={240}
+        style={{ width: '320px', maxWidth: '90vw', borderRadius: 12, height: 'auto' }}
+        unoptimized
       />
       <p style={{ fontSize: '1.2rem', marginBottom: 32, color: 'var(--main-red)', fontWeight: 600 }}>
         お探しのページは存在しないか、移動した可能性があります。
