@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 import remarkGfm from 'remark-gfm';
+import remarkTwitterEmbed from '../../../lib/remark-twitter-embed';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
@@ -33,7 +34,7 @@ async function getPost(slug: string): Promise<{ meta: PostMeta; contentHtml: str
   } else {
     contentWithoutTitle = contentWithoutTitle.replace(/^---\s*$/gm, '');
   }
-  const processedContent = await remark().use(remarkGfm).use(html).process(contentWithoutTitle);
+  const processedContent = await remark().use(remarkGfm).use(remarkTwitterEmbed).use(html).process(contentWithoutTitle);
   return {
     meta: {
       title: data.title || '',

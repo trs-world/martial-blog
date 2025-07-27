@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit';
 import type { Plugin } from 'unified';
-import type { Root, Paragraph, Text } from 'mdast';
+import type { Root, Paragraph, Text, Parent, Html } from 'mdast';
 
 // Twitter URLの正規表現パターン
 const TWITTER_URL_REGEX = /https?:\/\/(www\.)?(twitter\.com|x\.com)\/\w+\/status\/\d+/g;
@@ -60,7 +60,7 @@ function createTweetEmbed(tweetId: string): string {
 // remarkプラグインの実装
 const remarkTwitterEmbed: Plugin<[], Root> = () => {
   return (tree: Root) => {
-    visit(tree, 'paragraph', (node: Paragraph, index: number, parent: any) => {
+    visit(tree, 'paragraph', (node: Paragraph, index: number | undefined, parent: Parent | undefined) => {
       // パラグラフ内のテキストノードをチェック
       const textNode = node.children.find((child): child is Text => child.type === 'text');
       
@@ -80,13 +80,13 @@ const remarkTwitterEmbed: Plugin<[], Root> = () => {
               textNode.value = textNode.value.replace(url, '').trim();
               
               // HTMLノードを作成
-              const htmlNode = {
+              const htmlNode: Html = {
                 type: 'html',
                 value: embedHtml
               };
               
               // 親ノードに新しいHTMLノードを挿入
-              if (parent && typeof index === 'number') {
+              if (parent && typeof index === 'number' && 'children' in parent) {
                 parent.children.splice(index + 1, 0, htmlNode);
               }
             }
@@ -94,7 +94,7 @@ const remarkTwitterEmbed: Plugin<[], Root> = () => {
           
           // テキストが空になった場合はパラグラフを削除
           if (!textNode.value.trim()) {
-            if (parent && typeof index === 'number') {
+            if (parent && typeof index === 'number' && 'children' in parent) {
               parent.children.splice(index, 1);
             }
           }
