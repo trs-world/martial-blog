@@ -5,7 +5,7 @@ import Image from 'next/image';
 import ArticleSearchBox from './ArticleSearchBox';
 import ProfileCard from './ProfileCard';
 import styles from './ResponsiveArticleList.module.css';
-// import PopularArticles from './PopularArticles';
+import PopularArticles from './PopularArticles';
 
 type PostMeta = {
   title: string;
@@ -33,8 +33,13 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
     );
   });
 
-  // 人気記事データ（本来はpropsやAPIから取得）
-  // const popularArticles: import('./PopularArticles').PopularArticle[] = [];
+  // 人気記事データ（実際の記事データから生成）
+  const popularArticles: import('./PopularArticles').PopularArticle[] = posts.slice(0, 3).map(post => ({
+    title: post.title,
+    slug: post.slug,
+    views: Math.floor(Math.random() * 1000) + 100, // 実際のビュー数データがない場合の仮の値
+    thumbnail: post.thumbnail
+  }));
 
   return (
     <div className={styles.container}>
@@ -118,7 +123,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
         <div className={styles.mobileOnly}>
           <ArticleSearchBox query={query} setQuery={setQuery} />
           <div style={{ marginTop: 24 }}>
-            {/* <PopularArticles posts={popularArticles} /> */}
+            <PopularArticles posts={popularArticles} />
             <div style={{ marginTop: 24 }}>
               <ProfileCard />
             </div>
@@ -131,7 +136,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
         <div className={styles.desktopOnly}>
           <ArticleSearchBox query={query} setQuery={setQuery} />
           <div style={{ marginTop: 24 }}>
-            {/* <PopularArticles posts={popularArticles} /> */}
+            <PopularArticles posts={popularArticles} />
             <div style={{ marginTop: 24 }}>
               <ProfileCard />
             </div>
