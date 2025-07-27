@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ArticleSearchBox from './ArticleSearchBox';
@@ -18,6 +18,7 @@ type PostMeta = {
 
 export default function ArticleList({ posts }: { posts: PostMeta[] }) {
   const [query, setQuery] = useState('');
+  const [popularArticles, setPopularArticles] = useState<import('./PopularArticles').PopularArticle[]>([]);
   // 検索フィルタ
   const filtered = posts.filter(post => {
     const q = query.toLowerCase();
@@ -33,13 +34,47 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
     );
   });
 
-  // 人気記事データ（実際の記事データから生成）
-  const popularArticles: import('./PopularArticles').PopularArticle[] = posts.slice(0, 3).map(post => ({
-    title: post.title,
-    slug: post.slug,
-    views: Math.floor(Math.random() * 1000) + 100, // 実際のビュー数データがない場合の仮の値
-    thumbnail: post.thumbnail
-  }));
+  // Google Analyticsから人気記事データを取得
+  useEffect(() => {
+    const fetchPopularArticles = async () => {
+      try {
+        const response = await fetch('/api/popular-articles');
+        const data = await response.json();
+        
+        if (data.articles) {
+          // APIから取得したデータを変換
+          const articles = data.articles
+            .filter((article: any) => article.path.startsWith('/posts/'))
+            .map((article: any) => {
+              const slug = article.path.replace('/posts/', '');
+              const matchingPost = posts.find(post => post.slug === slug);
+              
+              return {
+                title: matchingPost?.title || article.title,
+                slug: slug,
+                views: article.pv,
+                thumbnail: matchingPost?.thumbnail
+              };
+            })
+            .filter((article: any) => article.title); // タイトルがあるもののみ
+          
+          setPopularArticles(articles.slice(0, 3));
+        }
+      } catch (error) {
+        console.error('Failed to fetch popular articles:', error);
+        // エラー時はフォールバック（最新の記事3件）
+        const fallback = posts.slice(0, 3).map(post => ({
+          title: post.title,
+          slug: post.slug,
+          views: 0,
+          thumbnail: post.thumbnail
+        }));
+        setPopularArticles(fallback);
+      }
+    };
+    
+    fetchPopularArticles();
+  }, [posts]);
 
   return (
     <div className={styles.container}>
