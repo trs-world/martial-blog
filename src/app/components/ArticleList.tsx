@@ -43,9 +43,15 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
         
         if (data.articles) {
           // APIから取得したデータを変換
-          const articles = data.articles
-            .filter((article: any) => article.path.startsWith('/posts/'))
-            .map((article: any) => {
+          interface ApiArticle {
+            path: string;
+            title: string;
+            pv: number;
+          }
+          
+          const articles = (data.articles as ApiArticle[])
+            .filter((article: ApiArticle) => article.path.startsWith('/posts/'))
+            .map((article: ApiArticle) => {
               const slug = article.path.replace('/posts/', '');
               const matchingPost = posts.find(post => post.slug === slug);
               
@@ -56,7 +62,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
                 thumbnail: matchingPost?.thumbnail
               };
             })
-            .filter((article: any) => article.title); // タイトルがあるもののみ
+            .filter((article: { title: string; slug: string; views: number; thumbnail?: string }) => article.title); // タイトルがあるもののみ
           
           setPopularArticles(articles.slice(0, 3));
         }

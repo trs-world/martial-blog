@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit';
 import type { Plugin } from 'unified';
-import type { Root, Paragraph, Text, Parent, Html } from 'mdast';
+import type { Root, Paragraph, Text, Parent, Html, Link } from 'mdast';
 
 // Twitter URLの正規表現パターン
 const TWITTER_URL_REGEX = /https?:\/\/(www\.)?(twitter\.com|x\.com)\/\w+\/status\/\d+/g;
@@ -706,7 +706,7 @@ const remarkTwitterEmbed: Plugin<[], Root> = () => {
     });
     
     // linkノードもチェック（マークダウンで自動リンク化された場合）
-    visit(tree, 'link', (node: any, index: number | undefined, parent: Parent | undefined) => {
+    visit(tree, 'link', (node: Link, index: number | undefined, parent: Parent | undefined) => {
       const url = node.url;
       console.log('🔗 link node found:', url);
       
