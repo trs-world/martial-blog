@@ -2,9 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
-import html from 'remark-html';
+import remarkRehype from 'remark-rehype';
+import rehypeRaw from 'rehype-raw';
+import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
-import remarkTwitterEmbed from '../../../lib/remark-twitter-embed';
+import remarkTwitterEmbed, { preloadTweetData } from '../../../lib/remark-twitter-embed';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
@@ -34,7 +36,17 @@ async function getPost(slug: string): Promise<{ meta: PostMeta; contentHtml: str
   } else {
     contentWithoutTitle = contentWithoutTitle.replace(/^---\s*$/gm, '');
   }
-  const processedContent = await remark().use(remarkGfm).use(remarkTwitterEmbed).use(html).process(contentWithoutTitle);
+  
+  // ツイートデータを事前取得
+  await preloadTweetData(contentWithoutTitle);
+  
+  const processedContent = await remark()
+    .use(remarkGfm)
+    .use(remarkTwitterEmbed)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeStringify)
+    .process(contentWithoutTitle);
   return {
     meta: {
       title: data.title || '',
