@@ -63,6 +63,8 @@ async function getPost(slug: string): Promise<{ meta: PostMeta; contentHtml: str
 import PostBodyWithBoxedHeadings from '../PostBodyWithBoxedHeadings';
 import Image from 'next/image';
 import Link from 'next/link';
+import RelatedArticles from '../../components/RelatedArticles';
+import { getRelatedPosts, getFirstCategory } from '../../../lib/posts';
 
 // generateMetadata function for dynamic Open Graph tags
 export async function generateMetadata(
@@ -162,6 +164,10 @@ export default async function PostPage(props: unknown) {
   const post = await getPost(slug);
   if (!post) return notFound();
   
+  // 関連記事を取得
+  const firstCategory = getFirstCategory(post.meta.category);
+  const relatedPosts = firstCategory ? getRelatedPosts(slug, firstCategory, 4) : [];
+  
   return (
     <main className="articleMain" style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
       <h1 style={{marginTop:0, fontSize:'1.5em'}}>{post.meta.title}</h1>
@@ -186,6 +192,12 @@ export default async function PostPage(props: unknown) {
       />
       {/* 記事本文：h1は囲わず、h2〜h6のみ四角で囲う */}
       <PostBodyWithBoxedHeadings html={post.contentHtml} />
+      
+      {/* 関連記事セクション */}
+      {relatedPosts.length > 0 && (
+        <RelatedArticles posts={relatedPosts} category={firstCategory} />
+      )}
+      
       <div style={{textAlign:'right', marginTop:32}}>
         <Link href="/" style={{ color: '#b71c1c', fontWeight: 500, fontSize: '0.98em', textDecoration: 'underline', opacity: 0.85 }}>
           トップへ戻る

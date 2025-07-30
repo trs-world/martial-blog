@@ -237,7 +237,7 @@ export default function ArticleList({ posts, currentPage = 1, totalPages = 1, ba
         <div className={styles.mobileOnly}>
           {totalPages <= 1 && <ArticleSearchBox query={query} setQuery={setQuery} />}
           <div style={{ marginTop: 24 }}>
-            <PopularArticles posts={popularArticles} />
+            {/* <PopularArticles posts={popularArticles} /> */}
             <div style={{ marginTop: 24 }}>
               <ProfileCard />
             </div>
@@ -250,7 +250,7 @@ export default function ArticleList({ posts, currentPage = 1, totalPages = 1, ba
         <div className={styles.desktopOnly}>
           {totalPages <= 1 && <ArticleSearchBox query={query} setQuery={setQuery} />}
           <div style={{ marginTop: 24 }}>
-            <PopularArticles posts={popularArticles} />
+            {/* <PopularArticles posts={popularArticles} /> */}
             <div style={{ marginTop: 24 }}>
               <ProfileCard />
             </div>
