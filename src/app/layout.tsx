@@ -142,6 +142,7 @@ export default function RootLayout({
         <footer style={{ marginBottom: 0, paddingBottom: 0 }}>
           <div className="footer-nav">
             <a href="/privacy-policy" className="footer-link"><span className="footer-arrow">&#9654;</span>プライバシーポリシー</a>
+            <a href="/terms" className="footer-link"><span className="footer-arrow">&#9654;</span>利用規約</a>
             <a href="/contact" className="footer-link"><span className="footer-arrow">&#9654;</span>お問い合わせ</a>
           </div>
           <div className="footer-copyright">

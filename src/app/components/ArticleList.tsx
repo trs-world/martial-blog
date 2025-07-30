@@ -235,7 +235,7 @@ export default function ArticleList({ posts, currentPage = 1, totalPages = 1, ba
         )}
         {/* スマホ時のみ下に検索・人気記事を表示 */}
         <div className={styles.mobileOnly}>
-          {totalPages <= 1 && <ArticleSearchBox query={query} setQuery={setQuery} />}
+          <ArticleSearchBox query={query} setQuery={setQuery} />
           <div style={{ marginTop: 24 }}>
             {/* <PopularArticles posts={popularArticles} /> */}
             <div style={{ marginTop: 24 }}>
@@ -248,7 +248,7 @@ export default function ArticleList({ posts, currentPage = 1, totalPages = 1, ba
       {/* PC時のみ右側に表示 */}
       <aside className={styles.aside}>
         <div className={styles.desktopOnly}>
-          {totalPages <= 1 && <ArticleSearchBox query={query} setQuery={setQuery} />}
+          <ArticleSearchBox query={query} setQuery={setQuery} />
           <div style={{ marginTop: 24 }}>
             {/* <PopularArticles posts={popularArticles} /> */}
             <div style={{ marginTop: 24 }}>
