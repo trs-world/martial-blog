@@ -125,7 +125,7 @@ function generateTocHtml(toc: TocItem[]): string {
     const indent = '  '.repeat(Math.max(0, item.level - 2)); // h2を基準にインデント
     const icon = getTocIcon(item.level);
     return `${indent}<li class="toc-item toc-level-${item.level}">
-${indent}  <a href="#${item.id}" class="toc-link" onclick="smoothScrollToElement('${item.id}'); return false;">
+${indent}  <a href="#${item.id}" class="toc-link" target="_self" onclick="event.preventDefault(); smoothScrollToElement('${item.id}'); return false;">
 ${indent}    <span class="toc-icon">${icon}</span>
 ${indent}    <span class="toc-text">${item.text}</span>
 ${indent}  </a>
@@ -144,14 +144,40 @@ ${tocItems}
 
 <script>
 function smoothScrollToElement(elementId) {
+  // デフォルトの動作を確実に防ぐ
   const element = document.getElementById(elementId);
   if (element) {
+    // スムーススクロール
     element.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
+    
+    // URLのハッシュを更新（ページ遷移は発生しない）
+    if (history.replaceState) {
+      history.replaceState(null, null, '#' + elementId);
+    }
   }
+  return false;
 }
+
+// DOMContentLoadedでイベントリスナーを追加
+document.addEventListener('DOMContentLoaded', function() {
+  // 目次リンクにクリックイベントを追加
+  const tocLinks = document.querySelectorAll('.toc-link');
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const elementId = href.substring(1);
+        smoothScrollToElement(elementId);
+      }
+      return false;
+    });
+  });
+});
 </script>
 
 <style>
