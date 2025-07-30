@@ -26,8 +26,13 @@ interface ArticleListProps {
 export default function ArticleList({ posts, currentPage = 1, totalPages = 1, basePath = '/' }: ArticleListProps) {
   const [query, setQuery] = useState('');
 
-  // 検索フィルタ（ページネーション使用時は検索機能を無効化）
-  const filtered = totalPages > 1 ? posts : posts.filter(post => {
+  // 検索フィルタ（常に適用）
+  const filtered = posts.filter(post => {
+    // 検索クエリが空の場合は全ての記事を表示
+    if (!query.trim()) {
+      return true;
+    }
+    
     const q = query.toLowerCase();
     const catStr = Array.isArray(post.category)
       ? post.category.join(' ')
@@ -144,8 +149,8 @@ export default function ArticleList({ posts, currentPage = 1, totalPages = 1, ba
             ))}
             </ul>
 
-            {/* ページネーションボタン */}
-            {totalPages > 1 && (
+            {/* ページネーションボタン（検索時は非表示） */}
+            {totalPages > 1 && !query.trim() && (
               <div style={{ 
                 display: 'flex', 
                 justifyContent: 'center', 
