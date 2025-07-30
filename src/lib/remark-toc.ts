@@ -125,7 +125,7 @@ function generateTocHtml(toc: TocItem[]): string {
     const indent = '  '.repeat(Math.max(0, item.level - 2)); // h2を基準にインデント
     const icon = getTocIcon(item.level);
     return `${indent}<li class="toc-item toc-level-${item.level}">
-${indent}  <a href="#${item.id}" class="toc-link" target="_self">
+${indent}  <a href="#${item.id}" class="toc-link">
 ${indent}    <span class="toc-icon">${icon}</span>
 ${indent}    <span class="toc-text">${item.text}</span>
 ${indent}  </a>
