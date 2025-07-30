@@ -2,8 +2,8 @@
 title: "RIZINフェザー級新チャンピオンになったラジャブアリ・シェイドゥラエフ！一体何者？？"
 date: "2025-07-04"
 category:
-  - MMA
   - RIZIN
+  - MMA
 thumbnail: "/2025-07-04-rajabuali/Razhabali_Shaidulloev.png"
 ---
 
