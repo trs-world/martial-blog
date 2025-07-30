@@ -7,6 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 import remarkTwitterEmbed, { preloadTweetData } from '../../../lib/remark-twitter-embed';
+import remarkToc from '../../../lib/remark-toc';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
@@ -42,6 +43,7 @@ async function getPost(slug: string): Promise<{ meta: PostMeta; contentHtml: str
   
   const processedContent = await remark()
     .use(remarkGfm)
+    .use(remarkToc)
     .use(remarkTwitterEmbed)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
