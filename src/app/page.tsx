@@ -37,9 +37,10 @@ function getPosts(): PostMeta[] {
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export default function Home({ searchParams }: { searchParams: { page?: string } }) {
+export default async function Home({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+  const resolvedSearchParams = await searchParams;
   const allPosts = getPosts();
-  const currentPage = parseInt(searchParams.page || '1', 10);
+  const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
   const postsPerPage = 10;
   const totalPages = Math.ceil(allPosts.length / postsPerPage);
   const startIndex = (currentPage - 1) * postsPerPage;

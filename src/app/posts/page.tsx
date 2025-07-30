@@ -41,10 +41,11 @@ function getPosts(): PostMeta[] {
 
 import ArticleList from "../components/ArticleList";
 
-export default function PostsPage(props: unknown) {
-  const { searchParams } = props as { searchParams: { category?: string | string[]; page?: string } };
-  const category = typeof searchParams.category === 'string' ? searchParams.category : Array.isArray(searchParams.category) ? searchParams.category[0] : undefined;
-  const currentPage = parseInt(searchParams.page || '1', 10);
+export default async function PostsPage(props: unknown) {
+  const { searchParams } = props as { searchParams: Promise<{ category?: string | string[]; page?: string }> };
+  const resolvedSearchParams = await searchParams;
+  const category = typeof resolvedSearchParams.category === 'string' ? resolvedSearchParams.category : Array.isArray(resolvedSearchParams.category) ? resolvedSearchParams.category[0] : undefined;
+  const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
   
   let allPosts = getPosts();
   if (category) {
