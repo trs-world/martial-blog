@@ -42,11 +42,13 @@ function getPosts(): PostMeta[] {
 import ArticleList from "../components/ArticleList";
 
 export default function PostsPage(props: unknown) {
-  const { searchParams } = props as { searchParams: { category?: string | string[] } };
+  const { searchParams } = props as { searchParams: { category?: string | string[]; page?: string } };
   const category = typeof searchParams.category === 'string' ? searchParams.category : Array.isArray(searchParams.category) ? searchParams.category[0] : undefined;
-  let posts = getPosts();
+  const currentPage = parseInt(searchParams.page || '1', 10);
+  
+  let allPosts = getPosts();
   if (category) {
-    posts = posts.filter(post => {
+    allPosts = allPosts.filter(post => {
       const cats = Array.isArray(post.category)
         ? post.category
         : typeof post.category === 'string'
@@ -55,5 +57,21 @@ export default function PostsPage(props: unknown) {
       return cats.includes(category);
     });
   }
-  return <ArticleList posts={posts} />;
+  
+  const postsPerPage = 10;
+  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const posts = allPosts.slice(startIndex, startIndex + postsPerPage);
+  
+  // ベースパスを構築（カテゴリがある場合はクエリパラメータを含める）
+  const basePath = category ? `/posts?category=${encodeURIComponent(category)}` : '/posts';
+  
+  return (
+    <ArticleList 
+      posts={posts} 
+      currentPage={currentPage}
+      totalPages={totalPages}
+      basePath={basePath}
+    />
+  );
 }

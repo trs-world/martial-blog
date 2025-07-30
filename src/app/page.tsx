@@ -37,8 +37,21 @@ function getPosts(): PostMeta[] {
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export default function Home() {
-  const posts = getPosts();
-  return <ArticleList posts={posts} />;
+export default function Home({ searchParams }: { searchParams: { page?: string } }) {
+  const allPosts = getPosts();
+  const currentPage = parseInt(searchParams.page || '1', 10);
+  const postsPerPage = 10;
+  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const posts = allPosts.slice(startIndex, startIndex + postsPerPage);
+  
+  return (
+    <ArticleList 
+      posts={posts} 
+      currentPage={currentPage}
+      totalPages={totalPages}
+      basePath="/"
+    />
+  );
 }
 

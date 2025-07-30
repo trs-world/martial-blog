@@ -16,11 +16,18 @@ type PostMeta = {
   excerpt: string;
 };
 
-export default function ArticleList({ posts }: { posts: PostMeta[] }) {
+interface ArticleListProps {
+  posts: PostMeta[];
+  currentPage?: number;
+  totalPages?: number;
+  basePath?: string;
+}
+
+export default function ArticleList({ posts, currentPage = 1, totalPages = 1, basePath = '/' }: ArticleListProps) {
   const [query, setQuery] = useState('');
   const [popularArticles, setPopularArticles] = useState<import('./PopularArticles').PopularArticle[]>([]);
-  // 検索フィルタ
-  const filtered = posts.filter(post => {
+  // 検索フィルタ（ページネーション使用時は検索機能を無効化）
+  const filtered = totalPages > 1 ? posts : posts.filter(post => {
     const q = query.toLowerCase();
     const catStr = Array.isArray(post.category)
       ? post.category.join(' ')
@@ -82,6 +89,28 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
     fetchPopularArticles();
   }, [posts]);
 
+  // ページネーションボタンのスタイル
+  const paginationButtonStyle = {
+    padding: '12px 24px',
+    backgroundColor: '#b71c1c',
+    color: 'white',
+    textDecoration: 'none',
+    borderRadius: '6px',
+    fontWeight: '500',
+    fontSize: '0.95em',
+    transition: 'all 0.2s ease',
+    display: 'inline-block',
+    border: 'none',
+    cursor: 'pointer',
+  };
+
+  const disabledButtonStyle = {
+    ...paginationButtonStyle,
+    backgroundColor: '#ccc',
+    cursor: 'not-allowed',
+    pointerEvents: 'none' as const,
+  };
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -91,7 +120,8 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
             記事がありません
           </div>
         ) : (
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginTop: 20 }}>
+          <>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginTop: 20 }}>
             {filtered.map((post) => (
               <li
                 key={post.slug}
@@ -158,11 +188,54 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
                 </div>
               </li>
             ))}
-          </ul>
+            </ul>
+
+            {/* ページネーションボタン */}
+            {totalPages > 1 && (
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                gap: '16px', 
+                marginTop: '40px',
+                marginBottom: '20px'
+              }}>
+                {currentPage > 1 ? (
+                  <Link 
+                    href={`${basePath}${basePath.includes('?') ? '&' : '?'}page=${currentPage - 1}`}
+                    style={paginationButtonStyle}
+                  >
+                    ← 前のページ
+                  </Link>
+                ) : (
+                  <span style={disabledButtonStyle}>← 前のページ</span>
+                )}
+                
+                <span style={{ 
+                  color: '#666', 
+                  fontSize: '0.95em',
+                  fontWeight: '500'
+                }}>
+                  {currentPage} / {totalPages}
+                </span>
+                
+                {currentPage < totalPages ? (
+                  <Link 
+                    href={`${basePath}${basePath.includes('?') ? '&' : '?'}page=${currentPage + 1}`}
+                    style={paginationButtonStyle}
+                  >
+                    次のページ →
+                  </Link>
+                ) : (
+                  <span style={disabledButtonStyle}>次のページ →</span>
+                )}
+              </div>
+            )}
+          </>
         )}
         {/* スマホ時のみ下に検索・人気記事を表示 */}
         <div className={styles.mobileOnly}>
-          <ArticleSearchBox query={query} setQuery={setQuery} />
+          {totalPages <= 1 && <ArticleSearchBox query={query} setQuery={setQuery} />}
           <div style={{ marginTop: 24 }}>
             <PopularArticles posts={popularArticles} />
             <div style={{ marginTop: 24 }}>
@@ -175,7 +248,7 @@ export default function ArticleList({ posts }: { posts: PostMeta[] }) {
       {/* PC時のみ右側に表示 */}
       <aside className={styles.aside}>
         <div className={styles.desktopOnly}>
-          <ArticleSearchBox query={query} setQuery={setQuery} />
+          {totalPages <= 1 && <ArticleSearchBox query={query} setQuery={setQuery} />}
           <div style={{ marginTop: 24 }}>
             <PopularArticles posts={popularArticles} />
             <div style={{ marginTop: 24 }}>
