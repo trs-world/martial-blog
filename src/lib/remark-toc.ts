@@ -125,7 +125,7 @@ function generateTocHtml(toc: TocItem[]): string {
     const indent = '  '.repeat(Math.max(0, item.level - 2)); // h2を基準にインデント
     const icon = getTocIcon(item.level);
     return `${indent}<li class="toc-item toc-level-${item.level}">
-${indent}  <a href="#${item.id}" class="toc-link">
+${indent}  <a href="javascript:void(0)" class="toc-link" onclick="var el = document.getElementById('${item.id}'); if(el) { el.scrollIntoView({behavior: 'smooth', block: 'start'}); if(history.replaceState) history.replaceState(null, null, '#${item.id}'); } return false;">
 ${indent}    <span class="toc-icon">${icon}</span>
 ${indent}    <span class="toc-text">${item.text}</span>
 ${indent}  </a>
@@ -135,7 +135,7 @@ ${indent}</li>`;
   return `<div class="table-of-contents">
   <div class="toc-header">
     <span class="toc-title">Contents</span>
-    <button class="toc-toggle">Hide</button>
+    <button class="toc-toggle" onclick="var toc = this.closest('.table-of-contents'); toc.classList.toggle('collapsed'); this.textContent = toc.classList.contains('collapsed') ? 'Show' : 'Hide';">Hide</button>
   </div>
   <ul class="toc-list">
 ${tocItems}
@@ -209,6 +209,8 @@ ${tocItems}
   color: #495057;
   border-radius: 4px;
   transition: all 0.2s;
+  cursor: pointer;
+  user-select: none;
 }
 
 .toc-link:hover {
