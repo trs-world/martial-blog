@@ -5,7 +5,7 @@ import Image from 'next/image';
 import ArticleSearchBox from './ArticleSearchBox';
 import ProfileCard from './ProfileCard';
 import styles from './ResponsiveArticleList.module.css';
-import PopularArticles from './PopularArticles';
+
 
 type PostMeta = {
   title: string;
@@ -25,7 +25,7 @@ interface ArticleListProps {
 
 export default function ArticleList({ posts, currentPage = 1, totalPages = 1, basePath = '/' }: ArticleListProps) {
   const [query, setQuery] = useState('');
-  const [popularArticles, setPopularArticles] = useState<import('./PopularArticles').PopularArticle[]>([]);
+
   // 検索フィルタ（ページネーション使用時は検索機能を無効化）
   const filtered = totalPages > 1 ? posts : posts.filter(post => {
     const q = query.toLowerCase();
@@ -41,53 +41,7 @@ export default function ArticleList({ posts, currentPage = 1, totalPages = 1, ba
     );
   });
 
-  // Google Analyticsから人気記事データを取得
-  useEffect(() => {
-    const fetchPopularArticles = async () => {
-      try {
-        const response = await fetch('/api/popular-articles');
-        const data = await response.json();
-        
-        if (data.articles) {
-          // APIから取得したデータを変換
-          interface ApiArticle {
-            path: string;
-            title: string;
-            pv: number;
-          }
-          
-          const articles = (data.articles as ApiArticle[])
-            .filter((article: ApiArticle) => article.path.startsWith('/posts/'))
-            .map((article: ApiArticle) => {
-              const slug = article.path.replace('/posts/', '');
-              const matchingPost = posts.find(post => post.slug === slug);
-              
-              return {
-                title: matchingPost?.title || article.title,
-                slug: slug,
-                views: article.pv,
-                thumbnail: matchingPost?.thumbnail
-              };
-            })
-            .filter((article: { title: string; slug: string; views: number; thumbnail?: string }) => article.title); // タイトルがあるもののみ
-          
-          setPopularArticles(articles.slice(0, 3));
-        }
-      } catch (error) {
-        console.error('Failed to fetch popular articles:', error);
-        // エラー時はフォールバック（最新の記事3件）
-        const fallback = posts.slice(0, 3).map(post => ({
-          title: post.title,
-          slug: post.slug,
-          views: 0,
-          thumbnail: post.thumbnail
-        }));
-        setPopularArticles(fallback);
-      }
-    };
-    
-    fetchPopularArticles();
-  }, [posts]);
+
 
   // ページネーションボタンのスタイル
   const paginationButtonStyle = {

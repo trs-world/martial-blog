@@ -5,10 +5,9 @@ import { PostMeta } from '../../lib/posts';
 
 interface RelatedArticlesProps {
   posts: PostMeta[];
-  category: string;
 }
 
-export default function RelatedArticles({ posts, category }: RelatedArticlesProps) {
+export default function RelatedArticles({ posts }: RelatedArticlesProps) {
   if (posts.length === 0) {
     return null;
   }

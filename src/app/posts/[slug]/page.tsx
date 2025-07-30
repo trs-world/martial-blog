@@ -195,7 +195,7 @@ export default async function PostPage(props: unknown) {
       
       {/* 関連記事セクション */}
       {relatedPosts.length > 0 && (
-        <RelatedArticles posts={relatedPosts} category={firstCategory} />
+        <RelatedArticles posts={relatedPosts} />
       )}
       
       <div style={{textAlign:'right', marginTop:32}}>
