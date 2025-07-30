@@ -75,16 +75,13 @@ export default async function PostsPage(props: unknown) {
   const startIndex = (currentPage - 1) * postsPerPage;
   const posts = allPosts.slice(startIndex, startIndex + postsPerPage);
   
-  // ベースパスを構築（カテゴリがある場合はクエリパラメータを含める）
-  const basePath = category ? `/posts?category=${encodeURIComponent(category)}` : '/posts';
-  
   return (
     <ArticleList 
       posts={posts}
       allPosts={allPosts} 
       currentPage={currentPage}
       totalPages={totalPages}
-      basePath={`/posts?category=${category}`}
+      basePath={category ? `/posts?category=${encodeURIComponent(category)}` : '/posts'}
     />
   );
 }
