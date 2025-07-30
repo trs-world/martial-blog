@@ -101,13 +101,27 @@ export default function ArticleList({ posts, allPosts, currentPage = 1, totalPag
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                  <Image unoptimized
-                    src={post.thumbnail || '/sample-thumb.jpg'}
-                    alt={post.title + 'のサムネイル'}
-                    width={80}
-                    height={80}
-                    style={{ borderRadius: 6, objectFit: 'cover', background: '#eee' }}
-                  />
+                  <div style={{
+                    width: 80,
+                    height: 80,
+                    borderRadius: 6,
+                    overflow: 'hidden',
+                    background: '#eee',
+                    flexShrink: 0
+                  }}>
+                    <Image unoptimized
+                      src={post.thumbnail || '/sample-thumb.jpg'}
+                      alt={post.title + 'のサムネイル'}
+                      width={80}
+                      height={80}
+                      style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'cover',
+                        objectPosition: 'center'
+                      }}
+                    />
+                  </div>
                   <div>
                     <div style={{ color: '#65331A', fontSize: '0.95em', marginBottom: 2 }}>
                       <span style={{ marginRight: 8 }}>{post.date}</span>
