@@ -60,6 +60,9 @@ export default function ResponsiveNav() {
               <Link href="/posts?category=キックボクシング" className="nav-btn nav-kick">
                 <div onClick={()=>setMenuOpen(false)}>キックボクシング</div>
               </Link>
+              <Link href="/contact" className="nav-btn nav-contact">
+                <div onClick={()=>setMenuOpen(false)}>お問い合わせ</div>
+              </Link>
             </div>
           </nav>
         </>
