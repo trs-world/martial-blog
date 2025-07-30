@@ -69,8 +69,8 @@ const remarkToc: Plugin<[], Root> = () => {
       const text = toString(node);
       const id = slugify(text, usedIds);
       
-      // デバッグ用ログ出力
-      console.log(`Heading: "${text}" -> ID: "${id}"`);
+      // デバッグ用ログ出力（本番環境では無効化）
+      // console.log(`Heading: "${text}" -> ID: "${id}"`);
       
       // 見出しにIDを追加
       if (!node.data) {
@@ -79,7 +79,7 @@ const remarkToc: Plugin<[], Root> = () => {
       if (!node.data.hProperties) {
         node.data.hProperties = {};
       }
-      (node.data.hProperties as any).id = id;
+      (node.data.hProperties as Record<string, unknown>).id = id;
       
       // TOCアイテムを追加
       toc.push({
