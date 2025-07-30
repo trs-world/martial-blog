@@ -10,6 +10,7 @@ import remarkTwitterEmbed, { preloadTweetData } from '../../../lib/remark-twitte
 import remarkToc from '../../../lib/remark-toc';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 
 interface PostMeta {
   title: string;
@@ -169,8 +170,10 @@ export default async function PostPage(props: unknown) {
   const relatedPosts = firstCategory ? getRelatedPosts(slug, firstCategory, 4) : [];
   
   return (
-    <main className="articleMain" style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
-      <h1 style={{marginTop:0, fontSize:'1.5em'}}>{post.meta.title}</h1>
+    <>
+      <Script src="/toc.js" strategy="afterInteractive" />
+      <main className="articleMain" style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
+        <h1 style={{marginTop:0, fontSize:'1.5em'}}>{post.meta.title}</h1>
       <div style={{ color: '#666' }}>
   {post.meta.date} / {
     Array.isArray(post.meta.category)
@@ -198,11 +201,12 @@ export default async function PostPage(props: unknown) {
         <RelatedArticles posts={relatedPosts} />
       )}
       
-      <div style={{textAlign:'right', marginTop:32}}>
-        <Link href="/" style={{ color: '#b71c1c', fontWeight: 500, fontSize: '0.98em', textDecoration: 'underline', opacity: 0.85 }}>
-          トップへ戻る
-        </Link>
-      </div>
-    </main>
+        <div style={{textAlign:'right', marginTop:32}}>
+          <Link href="/" style={{ color: '#b71c1c', fontWeight: 500, fontSize: '0.98em', textDecoration: 'underline', opacity: 0.85 }}>
+            トップへ戻る
+          </Link>
+        </div>
+      </main>
+    </>
   );
 }
