@@ -14,20 +14,28 @@ type PostMeta = {
   slug: string;
   thumbnail?: string;
   excerpt: string;
+  content?: string; // 検索用に本文全体を保持（オプショナル）
 };
 
 interface ArticleListProps {
   posts: PostMeta[];
+  allPosts?: PostMeta[]; // 検索用の全記事データ
   currentPage?: number;
   totalPages?: number;
   basePath?: string;
 }
 
-export default function ArticleList({ posts, currentPage = 1, totalPages = 1, basePath = '/' }: ArticleListProps) {
+export default function ArticleList({ posts, allPosts, currentPage = 1, totalPages = 1, basePath = '/' }: ArticleListProps) {
   const [query, setQuery] = useState('');
+  
+  console.log(`[ArticleList] Received ${posts.length} posts`);
+  console.log(`[ArticleList] AllPosts: ${allPosts?.length || 0} posts`);
+  console.log(`[ArticleList] Posts:`, posts.map(p => p.title));
+  console.log(`[ArticleList] Current query: "${query}"`);
 
-  // 検索フィルタ（常に適用）
-  const filtered = posts.filter(post => {
+  // 検索フィルタ（検索時は全記事、非検索時はページ内記事を対象）
+  const targetPosts = query.trim() ? (allPosts || posts) : posts;
+  const filtered = targetPosts.filter(post => {
     // 検索クエリが空の場合は全ての記事を表示
     if (!query.trim()) {
       return true;
@@ -42,9 +50,13 @@ export default function ArticleList({ posts, currentPage = 1, totalPages = 1, ba
     return (
       post.title.toLowerCase().includes(q) ||
       post.excerpt.toLowerCase().includes(q) ||
-      catStr.toLowerCase().includes(q)
+      catStr.toLowerCase().includes(q) ||
+      (post.content && post.content.toLowerCase().includes(q)) // 本文全体も検索対象に含める
     );
   });
+  
+  console.log(`[ArticleList] Filtered ${filtered.length} posts from ${posts.length} total`);
+  console.log(`[ArticleList] Filtered posts:`, filtered.map(p => p.title));
 
 
 
@@ -73,6 +85,10 @@ export default function ArticleList({ posts, currentPage = 1, totalPages = 1, ba
   return (
     <div className={styles.container}>
       <main className={styles.main}>
+        {/* スマホ時のみ上部に検索機能を表示 */}
+        <div className={styles.mobileOnly} style={{ marginTop: '30px' }}>
+          <ArticleSearchBox query={query} setQuery={setQuery} />
+        </div>
 
         {filtered.length === 0 ? (
           <div style={{ color: '#111', fontWeight: 500, fontSize: '1.1em', textAlign: 'center', margin: '32px 0' }}>
@@ -192,14 +208,10 @@ export default function ArticleList({ posts, currentPage = 1, totalPages = 1, ba
             )}
           </>
         )}
-        {/* スマホ時のみ下に検索・人気記事を表示 */}
+        {/* スマホ時のみ下部にプロフィールカードを表示 */}
         <div className={styles.mobileOnly}>
-          <ArticleSearchBox query={query} setQuery={setQuery} />
           <div style={{ marginTop: 24 }}>
-            {/* <PopularArticles posts={popularArticles} /> */}
-            <div style={{ marginTop: 24 }}>
-              <ProfileCard />
-            </div>
+            <ProfileCard />
           </div>
         </div>
       </main>

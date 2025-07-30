@@ -42,7 +42,7 @@ export default function ResponsiveNav() {
           <div className={styles.overlay} onClick={()=>setMenuOpen(false)}></div>
           <nav className={styles.menuOpen}>
             <button className={styles.closeBtn} aria-label="メニューを閉じる" onClick={()=>setMenuOpen(false)}>
-              <Image src="/hamburger-back.png" alt="閉じる" width={32} height={32} className={styles.backIcon} />
+              ×
             </button>
             <div className={styles.menuList}>
               <Link href="/" className="nav-btn nav-home">
