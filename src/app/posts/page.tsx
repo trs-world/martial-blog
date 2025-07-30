@@ -16,7 +16,6 @@ interface PostMeta {
 function getPosts(): PostMeta[] {
   const postsDir = path.join(process.cwd(), 'posts');
   const files = fs.readdirSync(postsDir);
-  console.log(`Total .md files found: ${files.filter(f => f.endsWith('.md')).length}`);
   const posts = files
     .filter((file) => file.endsWith('.md'))
     .map((file): PostMeta | null => {
@@ -24,10 +23,10 @@ function getPosts(): PostMeta[] {
         const filePath = path.join(postsDir, file);
         const fileContents = fs.readFileSync(filePath, 'utf8');
         const { data, content } = matter(fileContents);
-      // 本文から最初の50文字を抜粋
+      // 本文から最初の30文字を抜粋（検索用）
       const plain = content.replace(/[#>*\-\[\]!`_>\n]/g, '').trim();
-      let excerpt = plain.slice(0, 50);
-      if (plain.length > 50) excerpt += '...';
+      let excerpt = plain.slice(0, 30);
+      if (plain.length > 30) excerpt += '...';
         return {
           title: data.title,
           date: data.date,

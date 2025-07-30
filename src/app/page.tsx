@@ -16,7 +16,6 @@ interface PostMeta {
 function getPosts(): PostMeta[] {
   const postsDir = path.join(process.cwd(), 'posts');
   const files = fs.readdirSync(postsDir);
-  console.log(`Total .md files found: ${files.filter(f => f.endsWith('.md')).length}`);
   const posts = files
     .filter((file) => file.endsWith('.md'))
     .map((file): PostMeta | null => {
@@ -24,15 +23,12 @@ function getPosts(): PostMeta[] {
         const filePath = path.join(postsDir, file);
         const fileContents = fs.readFileSync(filePath, 'utf8');
         const { data, content } = matter(fileContents);
-      // 本文から最初の50文字を抜粋
+      // 本文から最初の30文字を抜粋（検索用）
       const plain = content.replace(/[#>*\-\[\]!`_>\n]/g, '').trim();
-      let excerpt = plain.slice(0, 50);
-      if (plain.length > 50) excerpt += '...';
+      let excerpt = plain.slice(0, 30);
+      if (plain.length > 30) excerpt += '...';
       
-      // デバッグ用ログ（「朝倉」が含まれる記事をチェック）
-      if (data.title && data.title.includes('朝倉')) {
-        console.log(`Found article with 朝倉: ${data.title} (${data.date})`);
-      }
+
       
         return {
           title: data.title,
@@ -57,14 +53,11 @@ function getPosts(): PostMeta[] {
 export default async function Home({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
   const resolvedSearchParams = await searchParams;
   const allPosts = getPosts();
-  console.log(`[Home] Total posts loaded: ${allPosts.length}`);
-  console.log(`[Home] Posts titles:`, allPosts.map(p => p.title));
   const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
   const postsPerPage = 10;
   const totalPages = Math.ceil(allPosts.length / postsPerPage);
   const startIndex = (currentPage - 1) * postsPerPage;
   const posts = allPosts.slice(startIndex, startIndex + postsPerPage);
-  console.log(`[Home] Displaying ${posts.length} posts for page ${currentPage}`);
   
   return (
     <ArticleList 

@@ -28,11 +28,6 @@ interface ArticleListProps {
 export default function ArticleList({ posts, allPosts, currentPage = 1, totalPages = 1, basePath = '/' }: ArticleListProps) {
   const [query, setQuery] = useState('');
   
-  console.log(`[ArticleList] Received ${posts.length} posts`);
-  console.log(`[ArticleList] AllPosts: ${allPosts?.length || 0} posts`);
-  console.log(`[ArticleList] Posts:`, posts.map(p => p.title));
-  console.log(`[ArticleList] Current query: "${query}"`);
-
   // 検索フィルタ（検索時は全記事、非検索時はページ内記事を対象）
   const targetPosts = query.trim() ? (allPosts || posts) : posts;
   const filtered = targetPosts.filter(post => {
@@ -42,21 +37,14 @@ export default function ArticleList({ posts, allPosts, currentPage = 1, totalPag
     }
     
     const q = query.toLowerCase();
-    const catStr = Array.isArray(post.category)
-      ? post.category.join(' ')
-      : typeof post.category === 'string'
-        ? post.category
-        : '';
+    // 最初の文章30文字以内を取得（excerptから初期30文字を抽出）
+    const first30Chars = post.excerpt ? post.excerpt.substring(0, 30) : '';
+    
     return (
       post.title.toLowerCase().includes(q) ||
-      post.excerpt.toLowerCase().includes(q) ||
-      catStr.toLowerCase().includes(q) ||
-      (post.content && post.content.toLowerCase().includes(q)) // 本文全体も検索対象に含める
+      first30Chars.toLowerCase().includes(q)
     );
   });
-  
-  console.log(`[ArticleList] Filtered ${filtered.length} posts from ${posts.length} total`);
-  console.log(`[ArticleList] Filtered posts:`, filtered.map(p => p.title));
 
 
 
