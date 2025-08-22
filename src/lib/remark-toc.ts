@@ -69,8 +69,8 @@ const remarkToc: Plugin<[], Root> = () => {
       const text = toString(node);
       const id = slugify(text, usedIds);
       
-      // デバッグ用ログ出力（本番環境では無効化）
-      // console.log(`Heading: "${text}" -> ID: "${id}"`);
+      // デバッグ用ログ出力（一時的に有効化）
+      console.log(`Heading: "${text}" -> ID: "${id}"`);
       
       // 見出しにIDを追加
       if (!node.data) {
@@ -125,7 +125,7 @@ function generateTocHtml(toc: TocItem[]): string {
     const indent = '  '.repeat(Math.max(0, item.level - 2)); // h2を基準にインデント
     const icon = getTocIcon(item.level);
     return `${indent}<li class="toc-item toc-level-${item.level}">
-${indent}  <a href="javascript:void(0)" class="toc-link" onclick="var el = document.getElementById('${item.id}'); if(el) { el.scrollIntoView({behavior: 'smooth', block: 'start'}); if(history.replaceState) history.replaceState(null, null, '#${item.id}'); } return false;">
+${indent}  <a href="javascript:void(0)" class="toc-link" onclick="console.log('Clicking TOC link for ID: ${item.id}'); var el = document.getElementById('${item.id}'); console.log('Found element:', el); if(el) { console.log('Scrolling to element'); el.scrollIntoView({behavior: 'smooth', block: 'start'}); if(history.replaceState) history.replaceState(null, null, '#${item.id}'); } else { console.error('Element not found: ${item.id}'); } return false;">
 ${indent}    <span class="toc-icon">${icon}</span>
 ${indent}    <span class="toc-text">${item.text}</span>
 ${indent}  </a>
