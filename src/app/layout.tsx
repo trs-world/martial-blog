@@ -23,9 +23,6 @@ export const metadata: Metadata = {
   description: "格闘技の最新情報をお届けします。",
   keywords: ["格闘技", "MMA", "キックボクシング", "UFC", "練習日記", "観戦記", "道具レビュー", "ブログ"],
   manifest: '/manifest.json',
-  themeColor: '#b71c1c',
-  colorScheme: 'light',
-  viewport: 'width=device-width, initial-scale=1',
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },
@@ -87,6 +84,13 @@ export const metadata: Metadata = {
     description: "RIZIN・UFCを中心に格闘技に関する最新情報をまとめるブログ。初心者からコアファンにまでわかりやすい情報をお届けします。",
     images: ["https://martial-blog.netlify.app/character.png"],
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#b71c1c',
+  colorScheme: 'light',
 };
 
 export default function RootLayout({
